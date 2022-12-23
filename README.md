@@ -1,5 +1,5 @@
-# ProyectoCoder34645
-ProyectoCoder34645 LeandroMagallanes
+# Proyecto Coderhouse Comisión 34645
+Leandro Magallanes
 
 Idea: un clon o similar a Letterboxd: https://letterboxd.com/
 
