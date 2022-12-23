@@ -1,0 +1,26 @@
+{% extends "C:\Users\leand\Desktop\Python\Entorno\virtual\ProyectoCoder\AppCoder\templates\AppCoder\padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <h1 class="font-weight-light">Búsqueda de película:</h1>
+{% endblock %}
+
+{% block descripcion %}
+
+<br>
+<h3>{{ mensaje }}</h3>
+<br>
+
+<form action="{% url 'buscar' %}" method="GET">
+
+    <input type="text" name="nombre" placeholder="Nombre de la película" class="form-control">
+
+    <br>
+    <input type ="submit" value="Buscar" class="btn btn-primary">
+    </br>
+
+</form>
+
+        
+{% endblock %}  

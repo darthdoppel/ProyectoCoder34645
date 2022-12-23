@@ -1,0 +1,29 @@
+{% extends "C:\Users\leand\Desktop\Python\Entorno\virtual\ProyectoCoder\AppCoder\templates\AppCoder\padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <h1 class="font-weight-light">Cargar película:</h1>
+{% endblock %}
+
+{% block descripcion %}
+
+<br>
+<h3>{{ mensaje }}</h3>
+<br>
+
+<form action="{% url 'peliFormulario' %}" method="POST">    
+    {% csrf_token %}
+    
+    <table>
+
+        {{ form.as_table }}
+        
+    </table>
+
+    <input type="submit" value="Cargar película" class="btn btn-primary">
+
+</form>
+
+    
+{% endblock %}

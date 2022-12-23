@@ -1,0 +1,18 @@
+{% extends "C:\Users\leand\Desktop\Python\Entorno\virtual\ProyectoCoder\AppCoder\templates\AppCoder\padre.html" %}
+
+{% load static %}
+
+<br>{% block titulo %}
+    <h1 class="font-weight-light">Resultado búsqueda de películas:</h1>
+{% endblock %}
+</br>
+
+{% block descripcion %}
+
+{% for pelicula in pelis %} 
+
+<h3> {{pelicula.nombre}} ({{pelicula.anio}}) - {{pelicula.director}}</h3>
+
+{% endfor %}
+
+{% endblock %}

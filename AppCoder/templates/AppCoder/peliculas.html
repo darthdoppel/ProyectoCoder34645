@@ -1,14 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peliculas</title>
-</head>
-<body>
-    
-    <h1>Esta es la vista de peliculas</h1>
+{% extends "C:\Users\leand\Desktop\Python\Entorno\virtual\ProyectoCoder\AppCoder\templates\AppCoder\padre.html" %}
 
-</body>
-</html>
+{% load static %}
+
+{% block titulo %}
+    <h1 class="font-weight-light">Listado de películas</h1>
+{% endblock %}
+
+{% block descripcion %}
+    <p class="lead">Desde aquí se agregan películas al sistema</p>{% endblock %}
+
+    {% block botonAgregar %} <a class="btn btn-primary" href="{% url 'peliFormulario' %}">Agregar película</a>
+{% endblock %}
+
+{% block peli1 %} <div class="row gx-4 gx-lg-5">
+    <div class="col-md-4 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <a class="nav-link" href="#!">Nombre película</a>
+                <p class="card-text">Descripción película</p>
+            </div>
+            <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">Ver más...</a></div>
+        </div>
+    </div>
+    {% endblock %}

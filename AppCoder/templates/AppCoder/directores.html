@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Directores</title>
-</head>
-<body>
-    
-    <h1>Esta es la lista de directores</h1>
+{% extends "C:\Users\leand\Desktop\Python\Entorno\virtual\ProyectoCoder\AppCoder\templates\AppCoder\padre.html" %}
 
-</body>
-</html>
+{% load static %}
+
+{% block titulo %}
+    <h1 class="font-weight-light">Listado de directores</h1>
+{% endblock %}
+
+{% block descripcion %}
+    <p class="lead">Desde aquí se agregan directores al sistema</p>{% endblock %}
+
+    {% block botonAgregar %} <a class="btn btn-primary" href="{% url 'directorForm' %}">Agregar director</a>
+{% endblock %}
