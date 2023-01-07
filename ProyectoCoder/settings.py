@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-j^fo8=qj%$wppigbc+q(7)9fp)ee2y3gxumeqlw6+m32j%bin(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'ProyectoCoder.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/Plantillas"],
+        'DIRS': [os.path.join(BASE_DIR, 'ProyectoCoder34645/AppCoder/templates/AppCoder')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,14 +71,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ProyectoCoder.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 

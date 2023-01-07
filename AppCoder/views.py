@@ -4,16 +4,16 @@ from django.http import HttpResponse
 from AppCoder.forms import *
 
 def peliculas(request):
-    return render (request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/peliculas.html")
+    return render (request, "AppCoder/peliculas.html")
 
 def directores(request):
-    return render (request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/directores.html")
+    return render (request, "AppCoder/directores.html")
 
 def actores(request):
-    return render (request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/actores.html")
+    return render (request, "AppCoder/actores.html")
 
 def inicio(request):
-    return render (request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/inicio.html")
+    return render (request, "AppCoder/inicio.html")
 
 def peliFormulario(request):
     if request.method == "POST":
@@ -28,13 +28,13 @@ def peliFormulario(request):
 
             nuevaPeli = pelicula(nombre=nombre, anio=anio, duracion=duracion, pais=pais, director=director)
             nuevaPeli.save()
-            return render(request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/inicio.html", {"mensaje": "Película guardada con éxito"})
+            return render(request, "AppCoder/inicio.html", {"mensaje": "Película guardada con éxito"})
 
         else:
-            return render(request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/peliFormulario.html", {"form": formulario, "mensaje": "Error al guardar la película"})
+            return render(request, "AppCoder/peliFormulario.html", {"form": formulario, "mensaje": "Error al guardar la película"})
     else:
         formulario = PeliForm()
-        return render(request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/peliFormulario.html", {"form": formulario})
+        return render(request, "AppCoder/peliFormulario.html", {"form": formulario})
 
 def actorForm(request):
     if request.method == "POST":
@@ -48,14 +48,14 @@ def actorForm(request):
 
             nuevoActor = actor(nombre=nombre, apellido=apellido, edad=edad, nacionalidad=nacionalidad)
             nuevoActor.save()
-            return render(request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/inicio.html", {"mensaje": "Actor guardado con éxito"})
+            return render(request, "AppCoder/inicio.html", {"mensaje": "Actor guardado con éxito"})
 
         else:
-            return render(request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/actorForm.html", {"form": formulario, "mensaje": "Error al guardar el actor"})
+            return render(request, "AppCoder/actorForm.html", {"form": formulario, "mensaje": "Error al guardar el actor"})
 
     else:
         formulario = ActorForm()
-        return render(request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/actorForm.html", {"form": formulario})
+        return render(request, "AppCoder/actorForm.html", {"form": formulario})
 
 def directorForm(request):
     if request.method == "POST":
@@ -69,22 +69,22 @@ def directorForm(request):
 
             nuevoDirector = director(nombre=nombre, apellido=apellido, edad=edad, nacionalidad=nacionalidad)
             nuevoDirector.save()
-            return render(request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/inicio.html", {"mensaje": "Director guardado con éxito"})
+            return render(request, "AppCoder/inicio.html", {"mensaje": "Director guardado con éxito"})
 
         else:
-            return render(request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/directorForm.html", {"form": formulario, "mensaje": "Error al guardar el director"})
+            return render(request, "AppCoder/directorForm.html", {"form": formulario, "mensaje": "Error al guardar el director"})
 
     else:
         formulario = DirectorForm()
-        return render(request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/directorForm.html", {"form": formulario})
+        return render(request, "AppCoder/directorForm.html", {"form": formulario})
 
 def busquedaPeli(request):
-    return render (request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/busquedaPeli.html")
+    return render (request, "AppCoder/busquedaPeli.html")
 
 def buscar(request):
     nombre = request.GET["nombre"]
     if nombre !="":
         pelis = pelicula.objects.filter(nombre__icontains=nombre)
-        return render (request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/resBusqPelis.html", {"pelis": pelis})
+        return render (request, "AppCoder/resBusqPelis.html", {"pelis": pelis})
     else:
-        return render (request, "C:/Users/leand/Desktop/Python/Entorno/virtual/ProyectoCoder/AppCoder/templates/AppCoder/busquedaPeli.html", {"mensaje": "No se encontró la película"})
+        return render (request, "AppCoder/busquedaPeli.html", {"mensaje": "No se encontró la película"})
