@@ -30,8 +30,4 @@ class actor(models.Model):
 
     def __str__(self):
         return f"{self.nombre} {self.apellido} - Edad: {self.edad} - Nacionalidad: {self.nacionalidad}"
-
-class Usuario(models.Model):
-    nombreusuario = models.CharField(max_length=80)
-    email = models.EmailField()
     

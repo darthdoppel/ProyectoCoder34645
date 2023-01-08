@@ -18,7 +18,7 @@
     {% for pelicula in pelis %}
     <li>{{ pelicula.nombre }} ({{ pelicula.anio }}) - Dir: {{ pelicula.director }}</li>
     <a class = "btn btn-primary" href="{% url 'editarPeli' pelicula.id %}">Editar</a>
-    <a class = "btn btn-primary" href="{% url 'eliminarPeli' pelicula.id %}">Eliminar</a>
+    <a class = "btn btn-primary" href="{% url 'borrarPeli' pelicula.id %}">Eliminar</a>
     {% endfor %}
 
 </ul>
