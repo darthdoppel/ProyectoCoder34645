@@ -13,15 +13,15 @@
 {{ mensaje }}
 
 
-<ul>
+<ul style="list-style: none;">
 
     {% for pelicula in pelis %}
-    <li>{{ pelicula.nombre }} ({{ pelicula.anio }}) - Dir: {{ pelicula.director }}
-    {% if pelicula.poster %}
-    <img src="{{ pelicula.poster }}" alt="">
-    {% endif %}
 
-    </li>
+
+    <li> <img src="/media/{{pelicula.poster}}" height="300" width="225" alt="">
+        
+        <br>{{ pelicula.nombre }} ({{ pelicula.anio }}) - Dir: {{ pelicula.director }}</br></li>
+
     {% if user.is_authenticated %}
     <a class = "btn btn-primary" href="{% url 'editarPeli' pelicula.id %}">Editar</a>
     <a class = "btn btn-danger" href="{% url 'borrarPeli' pelicula.id %}">Eliminar</a>

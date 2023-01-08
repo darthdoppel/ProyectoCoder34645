@@ -13,10 +13,13 @@
 {{ mensaje }}
 
 
-<ul>
+<ul style="list-style: none;">
 
     {% for director in directores %}
-    <li>{{ director.nombre }} {{ director.apellido }}</li>
+    <li> 
+        <img src="/media/{{director.foto}}" height="300" width="225"alt=""> 
+        
+        <br>{{ director.nombre }} {{ director.apellido }}</li></br>
 
     {% if user.is_authenticated %}
     <a class = "btn btn-primary" href="{% url 'editarDirector' director.id %}">Editar</a>
