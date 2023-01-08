@@ -1,0 +1,18 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+<br>{% block titulo %}
+    <h1 class="font-weight-light">Resultado búsqueda de actores:</h1>
+{% endblock %}
+</br>
+
+{% block descripcion %}
+
+{% for actor in actores %} 
+
+<h3> {{ actor.nombre }} {{ actor.apellido }} - {{actor.nacionalidad }}</h3>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import *
+from django.contrib.auth.views import LogoutView, LoginView
+
 
 urlpatterns = [
     path("peliculas/", peliculas, name="peliculas"),
@@ -10,8 +12,24 @@ urlpatterns = [
     path("actorForm/", actorForm, name="actorForm"),
     path("directorForm/", directorForm, name="directorForm"),
     path("busquedaPeli/", busquedaPeli, name="busquedaPeli"),
-    path("buscar/", buscar, name="buscar"),
+    path("buscarPeli/", buscarPeli, name="buscarPeli"),
     path("listarPelis/", listarPelis, name="listarPelis"),
     path("editarPeli/<id>", editarPeli, name="editarPeli"),
     path('pelicula/borrar/<pk>', borrarPeli.as_view(), name='borrarPeli'),
-]
+    path("listarDirectores/", listarDirectores, name="listarDirectores"),
+    path("editarDirector/<id>", editarDirector, name="editarDirector"),
+    path('director/borrar/<pk>', borrarDirector.as_view(), name='borrarDirector'),
+    path("busquedaDirector", busquedaDirector, name="busquedaDirector"),
+    path('buscarDirector/', buscarDirector, name='buscarDirector'),
+    path("busquedaActor", busquedaActor, name="busquedaActor"),
+    path("listarActores/", listarActores, name="listarActores"),
+    path("editarActor/<id>", editarActor, name="editarActor"),
+    path("buscarActor/", buscarActor, name="buscarActor"),
+    path("actor/borrar/<pk>)", borrarActor.as_view(), name="borrarActor"),
+
+    path("registro/", registro, name="registro"),
+    path("ingreso/", ingreso, name="ingreso"),
+    path("logout/", LogoutView.as_view(), name="logout"),
+    path("EditarPerfil/", EditarPerfil, name="EditarPerfil"),
+    path("agregarAvatar/", agregarAvatar, name="agregarAvatar"),
+]   

@@ -1,0 +1,30 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <h1 class="font-weight-light">INGRESAR:</h1>
+{% endblock %}
+
+{% block descripcion %}
+
+<br>
+<h3>{{ mensaje }}</h3>
+<br>
+
+<form action="{% url 'ingreso' %}" method="POST">    
+    {% csrf_token %}
+    
+    <table>
+
+        {{ form.as_table }}
+        
+    </table>
+
+    <br>
+    <input type="submit" value="LOGEARSE" class="btn btn-primary">
+    </br>
+</form>
+
+    
+{% endblock %}

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-    <h1 class="font-weight-light">Búsqueda de película:</h1>
+    <h1 class="font-weight-light">Búsqueda de director:</h1>
 {% endblock %}
 
 {% block descripcion %}
@@ -12,9 +12,9 @@
 <h3>{{ mensaje }}</h3>
 <br>
 
-<form action="{% url 'buscarPeli' %}" method="GET">
+<form action="{% url 'buscarDirector' %}" method="GET">
 
-    <input type="text" name="nombre" placeholder="Nombre de la película" class="form-control">
+    <input type="text" name="nombre" placeholder="Nombre y/o apellido el director" class="form-control">
 
     <br>
     <input type ="submit" value="Buscar" class="btn btn-primary">

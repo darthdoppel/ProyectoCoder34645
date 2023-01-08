@@ -1,0 +1,18 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+<br>{% block titulo %}
+    <h1 class="font-weight-light">Resultado búsqueda de directores:</h1>
+{% endblock %}
+</br>
+
+{% block descripcion %}
+
+{% for director in directores %} 
+
+<h3> {{ director.nombre }} {{ director.apellido }}</h3>
+
+{% endfor %}
+
+{% endblock %}

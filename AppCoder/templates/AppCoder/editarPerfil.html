@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-    <h1 class="font-weight-light">Editando la película {{ peli.nombre }}</h1>
+    <h1 class="font-weight-light">Editando perfil de usuario {{ nombreusuario }}</h1>
 {% endblock %}
 
 <h1>{{ mensaje }}</h1>
@@ -13,7 +13,7 @@
 
 {% block descripcion %}
 
-<form action = "{% url 'editarPeli' peli.id %}" method="POST">
+<form action = "{% url 'EditarPerfil' %}" method="POST">
     
 {% csrf_token %}
     
