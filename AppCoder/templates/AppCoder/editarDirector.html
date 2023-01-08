@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-    <h1 class="font-weight-light">Editando al director {{ director.nombre }}</h1>
+    <h1 class="font-weight-light">Editando al director {{ director.nombre }} {{ director.apellido }}</h1>
 {% endblock %}
 
 <h1>{{ mensaje }}</h1>
@@ -13,7 +13,7 @@
 
 {% block descripcion %}
 
-<form action = "{% url 'editarDirector' director.id %}" method="POST">
+<form action = "{% url 'editarDirector' director.id %}" method="POST" enctype="multipart/form-data">
     
 {% csrf_token %}
     

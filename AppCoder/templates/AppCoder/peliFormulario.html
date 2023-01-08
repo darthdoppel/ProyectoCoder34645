@@ -12,7 +12,7 @@
 <h3>{{ mensaje }}</h3>
 <br>
 
-<form action="{% url 'peliFormulario' %}" method="POST">    
+<form action="{% url 'peliFormulario' %}" method="POST" enctype="multipart/form-data">    
     {% csrf_token %}
     
     <table>
