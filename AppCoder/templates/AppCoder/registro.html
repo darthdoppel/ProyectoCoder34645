@@ -1,0 +1,30 @@
+{% extends "AppCoder/padre.html" %}
+
+
+{% load static %}
+
+{% block titulo %}
+    <h1 class="font-weight-light">Registro de usuario</h1>
+{% endblock %}
+
+{% block descripcion %}
+
+
+<br>
+<h3>{{ mensaje }}</h3>
+<br>
+{% endblock %}
+
+<form class="form" method="post">
+    
+{% csrf_token %}
+{{ form.as_p }}
+
+<button type="submit" class="btn btn-primary">Registrarse</button>
+
+</form>
+
+
+{% block contenidogris %} <div class="card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card-body"><p class="text-white m-0">Lugar para comentarios o descripciones</p></div>
+</div>{% endblock %}

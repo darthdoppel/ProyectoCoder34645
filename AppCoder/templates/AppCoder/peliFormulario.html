@@ -7,9 +7,6 @@
 {% endblock %}
 
 {% block descripcion %}
-
-<br>
-<h3>{{ mensaje }}</h3>
 <br>
 
 <form action="{% url 'peliFormulario' %}" method="POST">    
@@ -21,9 +18,11 @@
         
     </table>
 
-    <input type="submit" value="Cargar película" class="btn btn-primary">
+    
 
 </form>
-
-    
+</br>
+<br>
+<input type="submit" value="Cargar película" class="btn btn-primary">
+</br>
 {% endblock %}

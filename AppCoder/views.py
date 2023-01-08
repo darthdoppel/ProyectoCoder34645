@@ -2,9 +2,11 @@ from django.shortcuts import render
 from .models import *
 from django.http import HttpResponse
 from AppCoder.forms import *
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages as message
 
-def peliculas(request):
-    return render (request, "AppCoder/peliculas.html")
+def agregarpeliculas(request):
+    return render (request, "AppCoder/agregarpeliculas.html")
 
 def directores(request):
     return render (request, "AppCoder/directores.html")
@@ -14,6 +16,19 @@ def actores(request):
 
 def inicio(request):
     return render (request, "AppCoder/inicio.html")
+
+def registro(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            nombreusuario = form.cleaned_data.get('username')
+            message.success(request, f'Usuario {nombreusuario} creado con éxito')
+        else:
+            for msg in form.error_messages:
+                message.error(request, f"{msg}: {form.error_messages[msg]}")
+    else:
+        form = UserCreationForm()
+    return render (request, "AppCoder/registro.html")
 
 def peliFormulario(request):
     if request.method == "POST":
@@ -88,3 +103,33 @@ def buscar(request):
         return render (request, "AppCoder/resBusqPelis.html", {"pelis": pelis})
     else:
         return render (request, "AppCoder/busquedaPeli.html", {"mensaje": "No se encontró la película"})
+
+
+def listarPelis(request):
+    pelis = pelicula.objects.all()
+    return render (request, "AppCoder/listarPelis.html", {"pelis": pelis})
+
+def editarPeli(request, id):
+    peli = pelicula.objects.get(id=id)
+    if request.method == "POST":
+        form = PeliForm(request.POST)
+        if form.is_valid():
+            detalles = form.cleaned_data
+            peli.nombre = detalles["nombre"]
+            peli.anio = detalles["anio"]
+            peli.duracion = detalles["duracion"]
+            peli.pais = detalles["pais"]
+            peli.director = detalles["director"]
+            peli.save()
+            pelis = pelicula.objects.all()
+            return render(request, "AppCoder/listarPelis.html", {"pelis": pelis, "mensaje": "Película editada con éxito"})
+        pass
+    else:
+        formulario = PeliForm(initial = {"nombre": peli.nombre, "anio": peli.anio, "duracion": peli.duracion, "pais": peli.pais, "director": peli.director})
+        return render(request, "AppCoder/editarPeli.html", {"form": formulario, "peli": peli})
+
+def eliminarPeli (request, id):
+    peli = pelicula.objects.get(id=id)
+    peli.delete()
+    pelis = pelicula.objects.all()
+    return render(request, "AppCoder/listarPelis.html", {"pelis": pelis, "mensaje": "Película eliminada con éxito"})

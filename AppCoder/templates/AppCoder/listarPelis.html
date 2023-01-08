@@ -1,0 +1,32 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <h1 class="font-weight-light">Listado de películas:</h1>
+{% endblock %}
+
+
+
+{% block descripcion %}
+
+{{ mensaje }}
+
+
+<ul>
+
+    {% for pelicula in pelis %}
+    <li>{{ pelicula.nombre }} ({{ pelicula.anio }}) - Dir: {{ pelicula.director }}</li>
+    <a class = "btn btn-primary" href="{% url 'editarPeli' pelicula.id %}">Editar</a>
+    <a class = "btn btn-primary" href="{% url 'eliminarPeli' pelicula.id %}">Eliminar</a>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
+
+
+
+{% block botonAgregar %} <a class="btn btn-primary" href="{% url 'peliFormulario' %}">Agregar película</a>
+<a class="btn btn-primary" href="{% url 'busquedaPeli' %}">Buscar película</a>
+{% endblock %}
