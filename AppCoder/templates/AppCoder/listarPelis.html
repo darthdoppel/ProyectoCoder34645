@@ -2,16 +2,13 @@
 
 {% load static %}
 
-{% block titulo %}
+{% block contenido %}
     <h1 class="font-weight-light">Listado de películas:</h1>
-{% endblock %}
-
-
-
-{% block descripcion %}
 
 {{ mensaje }}
 
+{% if user.is_authenticated %} <a class="btn btn-primary" href="{% url 'peliFormulario' %}">Agregar película</a>{% endif %}
+<a class="btn btn-primary" href="{% url 'busquedaPeli' %}">Buscar película</a> 
 
 <ul style="list-style: none;">
 
@@ -20,7 +17,7 @@
 
     <li> <img src="/media/{{pelicula.poster}}" height="300" width="225" alt="">
         
-        <br>{{ pelicula.nombre }} ({{ pelicula.anio }}) - Dir: {{ pelicula.director }}</br></li>
+        <br> <a href="/AppCoder/detallePeli/{{ pelicula.id }}/"> {{ pelicula.nombre }} ({{ pelicula.anio }}) - Dir: {{ pelicula.director }}</a></br></li>
 
     {% if user.is_authenticated %}
     <a class = "btn btn-primary" href="{% url 'editarPeli' pelicula.id %}">Editar</a>
@@ -30,10 +27,10 @@
 
 </ul>
 
+
 {% endblock %}
 
 
 
-{% block botonAgregar %} {% if user.is_authenticated %} <a class="btn btn-primary" href="{% url 'peliFormulario' %}">Agregar película</a>{% endif %}
-<a class="btn btn-primary" href="{% url 'busquedaPeli' %}">Buscar película</a> 
-{% endblock %}
+
+

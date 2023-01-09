@@ -7,7 +7,7 @@ urlpatterns = [
     path("peliculas/", peliculas, name="peliculas"),
     path("directores/", directores, name="directores"),
     path("actores/", actores, name="actores"),
-    path("", inicio, name="inicio"),
+    path('', index, name="index"),
     path("peliFormulario/", peliFormulario, name="peliFormulario"),
     path("actorForm/", actorForm, name="actorForm"),
     path("directorForm/", directorForm, name="directorForm"),
@@ -32,4 +32,5 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout"),
     path("EditarPerfil/", EditarPerfil, name="EditarPerfil"),
     path("agregarAvatar/", agregarAvatar, name="agregarAvatar"),
+    path("detallePeli/<int:id>/", detallePeli, name="detallePeli"),
 ]   

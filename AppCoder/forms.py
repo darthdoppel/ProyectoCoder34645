@@ -6,6 +6,7 @@ class PeliForm(forms.Form):
     nombre = forms.CharField(label="Nombre", max_length=200)
     anio = forms.IntegerField(label="Año de estreno")
     duracion = forms.IntegerField(label="Duración (en minutos)")
+    descripcion = forms.CharField(label="Descripción", widget=forms.Textarea)
     pais = forms.CharField(label="País de origen", max_length=200)
     director = forms.CharField(label="Director de la película", max_length=200)
     poster = forms.ImageField(label="Poster de la película", required=False)

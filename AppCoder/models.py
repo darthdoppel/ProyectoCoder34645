@@ -8,9 +8,10 @@ class pelicula(models.Model):
     nombre = models.CharField(max_length=200)
     anio = models.IntegerField()
     duracion = models.IntegerField()
+    descripcion = models.TextField(null = True, blank = True)
     pais = models.CharField(max_length=200)
     director = models.CharField(max_length=200)
-    poster = models.ImageField(upload_to="posters")
+    poster = models.ImageField(upload_to="posters", null=True, blank=True)
 
     def __str__(self):
         return f"{self.nombre} ({self.anio}) - Director: {self.director}"

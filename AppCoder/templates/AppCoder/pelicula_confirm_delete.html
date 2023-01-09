@@ -2,14 +2,13 @@
 
 {% load static %}
 
-{% block titulo %}
+{% block contenido %}
     <h1 class="font-weight-light">Eliminando la película {{ pelicula.nombre }}</h1>
-{% endblock %}
+
 
 <br>
 </br>
 
-{% block descripcion %}
 
 <form method="post"> 
     {% csrf_token %}

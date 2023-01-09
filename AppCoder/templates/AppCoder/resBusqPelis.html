@@ -2,16 +2,16 @@
 
 {% load static %}
 
-<br>{% block titulo %}
-    <h1 class="font-weight-light">Resultado búsqueda de películas:</h1>
-{% endblock %}
-</br>
+{% block contenido %}
 
-{% block descripcion %}
+    <h1 class="font-weight-light">Resultado búsqueda de películas:</h1>
+
+
+
 
 {% for pelicula in pelis %} 
 
-<h3> {{pelicula.nombre}} ({{pelicula.anio}}) - {{pelicula.director}}</h3>
+<h3> <a href="/AppCoder/detallePeli/{{ pelicula.id }}/"> {{pelicula.nombre}} ({{pelicula.anio}}) - {{pelicula.director}}</a></h3>
 
 {% endfor %}
 

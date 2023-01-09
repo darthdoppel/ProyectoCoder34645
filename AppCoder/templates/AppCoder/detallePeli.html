@@ -1,0 +1,20 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+<br>
+    
+<h1>{{ pelicula.nombre }} ({{ pelicula.anio }}) - Dir: {{ pelicula.director }}</h1>
+
+<p>{{ pelicula.descripcion }}</p>
+
+<img src="/media/{{pelicula.poster}}" height="300" width="225" alt="">
+
+</br>
+
+{% endblock %}
+
+
+

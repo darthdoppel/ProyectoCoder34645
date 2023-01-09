@@ -1,0 +1,29 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+           <div class="row">
+                {% for pelicula in pelis %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="text-center">{{ pelicula.nombre }}</h3>
+                            <div class="text-center">
+                            <i class="text-center">{{ pelicula.anio }}</i>
+                            </div>
+                    <a href="/AppCoder/detallePeli/{{ pelicula.id }}/">Ver más...</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

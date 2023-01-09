@@ -1,14 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.http import HttpResponse
 from AppCoder.forms import *
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, ListView, DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 def peliculas(request):
     return render (request, "AppCoder/listarPelis.html")
@@ -19,8 +20,8 @@ def directores(request):
 def actores(request):
     return render (request, "AppCoder/actores.html")
 
-def inicio(request):
-    return render (request, "AppCoder/inicio.html")
+def index(request):
+    return render (request, "AppCoder/index.html")
 
 @login_required
 def mostrarAvatar(request):
@@ -127,7 +128,7 @@ def busquedaPeli(request):
 
 def buscarPeli(request):
     nombre = request.GET["nombre"]
-    if nombre !="":
+    if nombre != "":
         pelis = pelicula.objects.filter(nombre__icontains=nombre)
         return render (request, "AppCoder/resBusqPelis.html", {"pelis": pelis})
     else:
@@ -147,6 +148,7 @@ def editarPeli(request, id):
             peli.nombre = detalles["nombre"]
             peli.anio = detalles["anio"]
             peli.duracion = detalles["duracion"]
+            peli.descripcion = detalles["descripcion"]
             peli.pais = detalles["pais"]
             peli.director = detalles["director"]
             peli.poster = detalles["poster"]
@@ -155,7 +157,7 @@ def editarPeli(request, id):
             return render(request, "AppCoder/listarPelis.html", {"pelis": pelis, "mensaje": "Película editada con éxito"})
         pass
     else:
-        formulario = PeliForm(initial = {"nombre": peli.nombre, "anio": peli.anio, "duracion": peli.duracion, "pais": peli.pais, "director": peli.director, "poster": peli.poster})
+        formulario = PeliForm(initial={"nombre": peli.nombre, "anio": peli.anio, "duracion": peli.duracion, "descripcion": peli.descripcion, "pais": peli.pais, "director": peli.director, "poster": peli.poster})
         return render(request, "AppCoder/editarPeli.html", {"form": formulario, "peli": peli})
 
 class borrarPeli(DeleteView, LoginRequiredMixin):
@@ -305,4 +307,10 @@ def EditarPerfil(request):
         form = EditarPerfilForm(instance=usuario)
         return render(request, "AppCoder/editarPerfil.html", {"form": form, "nombreusuario": usuario.username})
 
-# Carga posters de películas
+def detallePeli(request, id):
+    peli = pelicula.objects.get(id=id)
+    
+    context = {
+        "pelicula": peli
+    }
+    return render(request, "AppCoder/detallePeli.html", context)

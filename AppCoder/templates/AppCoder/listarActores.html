@@ -2,15 +2,14 @@
 
 {% load static %}
 
-{% block titulo %}
+{% block contenido %}
     <h1 class="font-weight-light">Listado de actores:</h1>
-{% endblock %}
 
-
-
-{% block descripcion %}
 
 {{ mensaje }}
+
+ {% if user.is_authenticated %} <a class="btn btn-primary" href="{% url 'actorForm' %}">Agregar actor</a>{% endif %}
+<a class="btn btn-primary" href="{% url 'busquedaActor' %}">Buscar actor</a> 
 
 
 <ul style="list-style: none;">
@@ -32,6 +31,3 @@
 
 
 
-{% block botonAgregar %}  {% if user.is_authenticated %} <a class="btn btn-primary" href="{% url 'actorForm' %}">Agregar actor</a>{% endif %}
-<a class="btn btn-primary" href="{% url 'busquedaActor' %}">Buscar actor</a> 
-{% endblock %}
