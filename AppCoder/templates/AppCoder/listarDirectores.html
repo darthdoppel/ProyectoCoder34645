@@ -2,7 +2,9 @@
 
 {% block contenido %}
 
+<a href="{% url 'directorForm' %}" class="btn btn-warning">AGREGAR DIRECTOR</a>
 
+<div class="text-center"><h2>{{ mensaje }}</h2></div>
 
 <div class="container">
     <div class="card">
@@ -17,7 +19,7 @@
                             <h3 class="text-center">{{ director.nombre }} {{ director.apellido }}</h3>
                             <i class="text-center">{{ director.nacionalidad }} - {{ director.edad }}</i>
                             </div>
-                    <a href="/AppCoder/detallePeli/{{ pelicula.id }}/">Ver más...</a>
+                    <a href="/AppCoder/detalleDirector/{{ director.id }}/">Ver más...</a>
                         </div>
                     </div>
                 </div>

@@ -18,24 +18,19 @@
                             <br>
                             <h5>Dirigida por: {{ pelicula.director }}</h5>
                             <h5>Puntaje promedio: {{ pelicula.puntajepromedio }}</h5>
+                            <h5>Cast: </h5>
 
-                            {% if request.user.is_authenticated %}
-                                {% if request.user.is_superuser %}
+                            {% if user.is_authenticated %}
+                            
                             <a href="{% url 'editarPeli' pelicula.id %}" class="btn btn-warning">EDITAR</a>
                             <a href="{% url 'borrarPeli' pelicula.id %}" class="btn btn-danger">BORRAR!!</a>
-                                {% endif %}
-                            {% endif %} 
                             
+                            {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
+
 
 {% endblock %}
-
-
-

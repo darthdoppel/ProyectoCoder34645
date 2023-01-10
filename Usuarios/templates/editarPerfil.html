@@ -2,16 +2,12 @@
 
 {% load static %}
 
-{% block titulo %}
-    <h1 class="font-weight-light">Editando perfil de usuario {{ nombreusuario }}</h1>
-{% endblock %}
+{% load crispy_forms_tags %}
 
-<h1>{{ mensaje }}</h1>
+{% block contenido %}
 
+<h1 class="font-weight-light">Editando perfil de usuario <i>{{ nombreusuario }}</i></h1>
 <br>
-</br>
-
-{% block descripcion %}
 
 <form action = "{% url 'EditarPerfil' %}" method="POST">
     
@@ -19,7 +15,7 @@
     
     <table>
 
-        {{ form.as_table }}
+        {{ form | crispy }}
         
     </table>
 <br>

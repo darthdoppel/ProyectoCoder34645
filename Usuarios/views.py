@@ -5,7 +5,7 @@ from Usuarios.forms import *
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.views.generic import DeleteView, ListView, DetailView
 from django.urls import reverse_lazy
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, get_user_model
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -99,3 +99,7 @@ def agregarAvatar(request):
     else:
         form = AvatarForm()
         return render(request, "agregarAvatar.html", {"form": form, "usuario": request.user})
+
+@login_required
+def verperfil(request):
+    return render(request, "perfil.html", {"avatar": mostrarAvatar(request)})

@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.views.generic import DeleteView, ListView, DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate
+from django.utils.timezone import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -28,80 +29,74 @@ def index(request):
 
 @login_required
 def peliFormulario(request):
-    if request.user.is_authenticated:
-        if request.user.is_superuser:
-            if request.method == "POST":
-                form = PeliForm(request.POST, request.FILES)
-                if form.is_valid():
-                    detalles = form.cleaned_data
-                    nombre = detalles["nombre"]
-                    anio = detalles["anio"]
-                    duracion = detalles["duracion"]
-                    descripcion = detalles["descripcion"]
-                    pais = detalles["pais"]
-                    director = detalles["director"]
-                    poster = detalles["poster"]
-                    puntajepromedio = detalles["puntajepromedio"]
+    if request.method == "POST":
+        form = PeliForm(request.POST, request.FILES)
+        if form.is_valid():
+            detalles = form.cleaned_data
+            nombre = detalles["nombre"]
+            anio = detalles["anio"]
+            duracion = detalles["duracion"]
+            descripcion = detalles["descripcion"]
+            pais = detalles["pais"]
+            director = detalles["director"]
+            poster = detalles["poster"]
+            puntajepromedio = detalles["puntajepromedio"]
 
-                    nuevaPeli = pelicula(nombre=nombre, anio=anio, duracion=duracion, descripcion=descripcion, pais=pais, director=director, poster=poster, puntajepromedio=puntajepromedio)
-                    nuevaPeli.save()
-                    return render(request, "AppCoder/listarPelis.html", {"mensaje": "Película guardada con éxito"})
+            nuevaPeli = pelicula(nombre=nombre, anio=anio, duracion=duracion, descripcion=descripcion, pais=pais, director=director, poster=poster, puntajepromedio=puntajepromedio)
+            nuevaPeli.save()
+            return render(request, "AppCoder/listarPelis.html", {"mensaje": "Película guardada con éxito"})
 
-                else:
-                    return render(request, "AppCoder/peliFormulario.html", {"form": form, "mensaje": "Error al guardar la película"})
-            else:
-                formulario = PeliForm()
-                return render(request, "AppCoder/peliFormulario.html", {"form": formulario, "controller": "Agregar película"})
+        else:
+            return render(request, "AppCoder/peliFormulario.html", {"form": form, "mensaje": "Error al guardar la película"})
+    else:
+        formulario = PeliForm()
+        return render(request, "AppCoder/peliFormulario.html", {"form": formulario, "controller": "Agregar película"})
 
 @login_required
 def actorForm(request):
-    if request.user.is_authenticated:
-        if request.user.is_superuser:
-            if request.method == "POST":
-                form = ActorForm(request.POST, request.FILES)
-                if form.is_valid():
-                    detalles = form.cleaned_data
-                    nombre = detalles["nombre"]
-                    apellido = detalles["apellido"]
-                    edad = detalles["edad"]
-                    nacionalidad = detalles["nacionalidad"]
-                    foto = detalles["foto"]
+    if request.method == "POST":
+        form = ActorForm(request.POST, request.FILES)
+        if form.is_valid():
+            detalles = form.cleaned_data
+            nombre = detalles["nombre"]
+            apellido = detalles["apellido"]
+            edad = detalles["edad"]
+            nacionalidad = detalles["nacionalidad"]
+            foto = detalles["foto"]
 
-                    nuevoActor = actor(nombre=nombre, apellido=apellido, edad=edad, nacionalidad=nacionalidad, foto = foto)
-                    nuevoActor.save()
-                    return render(request, "AppCoder/inicio.html", {"mensaje": "Actor guardado con éxito"})
+            nuevoActor = actor(nombre=nombre, apellido=apellido, edad=edad, nacionalidad=nacionalidad, foto = foto)
+            nuevoActor.save()
+            return render(request, "AppCoder/listarActores.html", {"mensaje": "Actor guardado con éxito"})
 
-                else:
-                    return render(request, "AppCoder/actorForm.html", {"form": formulario, "mensaje": "Error al guardar el actor"})
+        else:
+            return render(request, "AppCoder/actorForm.html", {"form": formulario, "mensaje": "Error al guardar el actor"})
 
-            else:
-                formulario = ActorForm()
-                return render(request, "AppCoder/actorForm.html", {"form": formulario})
+    else:
+        formulario = ActorForm()
+        return render(request, "AppCoder/actorForm.html", {"form": formulario})
 
 @login_required
 def directorForm(request):
-    if request.user.is_authenticated:
-        if request.user.is_superuser:
-            if request.method == "POST":
-                form = DirectorForm(request.POST, request.FILES)
-                if form.is_valid():
-                    detalles = form.cleaned_data
-                    nombre = detalles["nombre"]
-                    apellido = detalles["apellido"]
-                    edad = detalles["edad"]
-                    nacionalidad = detalles["nacionalidad"]
-                    foto = detalles["foto"]
+    if request.method == "POST":
+        form = DirectorForm(request.POST, request.FILES)
+        if form.is_valid():
+            detalles = form.cleaned_data
+            nombre = detalles["nombre"]
+            apellido = detalles["apellido"]
+            edad = detalles["edad"]
+            nacionalidad = detalles["nacionalidad"]
+            foto = detalles["foto"]
 
-                    nuevoDirector = director(nombre=nombre, apellido=apellido, edad=edad, nacionalidad=nacionalidad, foto = foto)
-                    nuevoDirector.save()
-                    return render(request, "AppCoder/inicio.html", {"mensaje": "Director guardado con éxito"})
+            nuevoDirector = director(nombre=nombre, apellido=apellido, edad=edad, nacionalidad=nacionalidad, foto = foto)
+            nuevoDirector.save()
+            return render(request, "AppCoder/listarDirectores.html", {"mensaje": "Director guardado con éxito"})
 
-                else:
-                    return render(request, "AppCoder/directorForm.html", {"form": formulario, "mensaje": "Error al guardar el director"})
+        else:
+            return render(request, "AppCoder/directorForm.html", {"form": formulario, "mensaje": "Error al guardar el director"})
 
-            else:
-                formulario = DirectorForm()
-                return render(request, "AppCoder/directorForm.html", {"form": formulario})
+    else:
+        formulario = DirectorForm()
+        return render(request, "AppCoder/directorForm.html", {"form": formulario})
 
 # Funciones y clases de pelis
 
@@ -122,28 +117,26 @@ def listarPelis(request):
 
 @login_required
 def editarPeli(request, id):
-    if request.user.is_authenticated:
-        if request.user.is_superuser:
-            peli = pelicula.objects.get(id=id)
-            if request.method == "POST":
-                form = PeliForm(request.POST, request.FILES)
-                if form.is_valid():
-                    detalles = form.cleaned_data
-                    peli.nombre = detalles["nombre"]
-                    peli.anio = detalles["anio"]
-                    peli.duracion = detalles["duracion"]
-                    peli.descripcion = detalles["descripcion"]
-                    peli.pais = detalles["pais"]
-                    peli.director = detalles["director"]
-                    peli.poster = detalles["poster"]
-                    peli.puntajepromedio = detalles["puntajepromedio"]
-                    peli.save()
-                    pelis = pelicula.objects.all()
-                    return render(request, "AppCoder/listarPelis.html", {"pelis": pelis, "mensaje": "Película editada con éxito"})
-                pass
-            else:
-                formulario = PeliForm(initial={"nombre": peli.nombre, "anio": peli.anio, "duracion": peli.duracion, "descripcion": peli.descripcion, "pais": peli.pais, "director": peli.director, "poster": peli.poster, "puntajepromedio": peli.puntajepromedio})
-                return render(request, "AppCoder/editarPeli.html", {"form": formulario, "peli": peli, "controller": "editarPeli"})
+    peli = pelicula.objects.get(id=id)
+    if request.method == "POST":
+        form = PeliForm(request.POST, request.FILES)
+        if form.is_valid():
+            detalles = form.cleaned_data
+            peli.nombre = detalles["nombre"]
+            peli.anio = detalles["anio"]
+            peli.duracion = detalles["duracion"]
+            peli.descripcion = detalles["descripcion"]
+            peli.pais = detalles["pais"]
+            peli.director = detalles["director"]
+            peli.poster = detalles["poster"]
+            peli.puntajepromedio = detalles["puntajepromedio"]
+            peli.save()
+            pelis = pelicula.objects.all()
+            return render(request, "AppCoder/listarPelis.html", {"pelis": pelis, "mensaje": "Película editada con éxito"})
+        pass
+    else:
+        formulario = PeliForm(initial={"nombre": peli.nombre, "anio": peli.anio, "duracion": peli.duracion, "descripcion": peli.descripcion, "pais": peli.pais, "director": peli.director, "poster": peli.poster, "puntajepromedio": peli.puntajepromedio})
+        return render(request, "AppCoder/editarPeli.html", {"form": formulario, "peli": peli, "controller": "EDITAR PELICULA"})
 
 class borrarPeli(DeleteView, LoginRequiredMixin):
     model = pelicula
@@ -225,7 +218,7 @@ def editarActor(request, id):
         pass
     else:
         formulario = ActorForm(initial = {"nombre": actors.nombre, "apellido": actors.apellido, "edad": actors.edad, "nacionalidad": actors.nacionalidad, "foto": actors.foto})
-        return render(request, "AppCoder/editarActor.html", {"form": formulario, "actor": actors})
+        return render(request, "AppCoder/editarActor.html", {"form": formulario, "actor": actors, "controller": "EDITAR ACTOR"})
 
 class borrarActor(DeleteView, LoginRequiredMixin):
     model = actor
@@ -238,3 +231,19 @@ def detallePeli(request, id):
         "pelicula": peli
     }
     return render(request, "AppCoder/detallePeli.html", context)
+
+def detalleActor(request, id):
+    actorcito = actor.objects.get(id=id)
+    
+    context = {
+        "actor": actorcito
+    }
+    return render(request, "AppCoder/detalleActor.html", context)
+
+def detalleDirector(request, id):
+    directorcito = director.objects.get(id=id)
+    
+    context = {
+        "director": directorcito
+    }
+    return render(request, "AppCoder/detalleDirector.html", context)

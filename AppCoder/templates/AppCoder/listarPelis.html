@@ -2,7 +2,14 @@
 
 {% block contenido %}
 
-<a href="{% url 'peliFormulario' %}" class="btn btn-warning">AGREGAR PELI</a>
+{% if user.is_authenticated %}
+    <a href="{% url 'peliFormulario' %}" class="btn btn-warning">AGREGAR PELI</a>
+
+{% endif %}
+
+<div class="text-center"><h2>{{ mensaje }}</h2></div>
+
+<br>
 
 <div class="container">
     <div class="card">

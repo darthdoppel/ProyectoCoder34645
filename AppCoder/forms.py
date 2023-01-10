@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from django.contrib.auth.models import User
+from .models import *
 
 class PeliForm(forms.Form):
     nombre = forms.CharField(label="Nombre", max_length=200)
@@ -10,7 +11,7 @@ class PeliForm(forms.Form):
     pais = forms.CharField(label="País de origen", max_length=200)
     director = forms.CharField(label="Director de la película", max_length=200)
     poster = forms.URLField(label="Link del póster de la película", required=False)
-    puntajepromedio = forms.FloatField(label="Puntaje promedio", required=False)
+    puntajepromedio = forms.FloatField(label="Puntaje promedio", initial=0)
 
     class Meta:
         model= User

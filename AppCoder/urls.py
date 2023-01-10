@@ -27,4 +27,6 @@ urlpatterns = [
     path("buscarActor/", buscarActor, name="buscarActor"),
     path("actor/borrar/<pk>)", borrarActor.as_view(), name="borrarActor"),
     path("detallePeli/<int:id>/", detallePeli, name="detallePeli"),
+    path("detalleActor/<int:id>/", detalleActor, name="detalleActor"),
+    path("detalleDirector/<int:id>/", detalleDirector, name="detalleDirector"),
 ]   
