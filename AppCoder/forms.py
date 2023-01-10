@@ -9,7 +9,8 @@ class PeliForm(forms.Form):
     descripcion = forms.CharField(label="Descripción", widget=forms.Textarea)
     pais = forms.CharField(label="País de origen", max_length=200)
     director = forms.CharField(label="Director de la película", max_length=200)
-    poster = forms.ImageField(label="Poster de la película", required=False)
+    poster = forms.URLField(label="Link del póster de la película", required=False)
+    puntajepromedio = forms.FloatField(label="Puntaje promedio", required=False)
 
     class Meta:
         model= User
@@ -21,38 +22,11 @@ class ActorForm(forms.Form):
     apellido = forms.CharField(label="Apellido", max_length=80)
     edad = forms.IntegerField(label="Edad")
     nacionalidad = forms.CharField(label="Nacionalidad", max_length=80)
-    foto = forms.ImageField(label="Foto del actor", required=False)
+    foto = forms.URLField(label="Foto del actor", required=False)
 
 class DirectorForm(forms.Form):
     nombre = forms.CharField(label="Nombre", max_length=80)
     apellido = forms.CharField(label="Apellido", max_length=80)
     edad = forms.IntegerField(label="Edad")
     nacionalidad = forms.CharField(label="Nacionalidad", max_length=80)
-    foto = forms.ImageField(label="Foto del director", required=False)
-
-class RegistroUsuarioForm(UserCreationForm):
-    email = forms.EmailField(label="Email usuario")
-    password1= forms.CharField(label="Contraseña", widget=forms.PasswordInput)
-    password2= forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
-    first_name = forms.CharField(label="Nombre", max_length=150)
-    last_name = forms.CharField(label="Apellido", max_length=150)
-
-    class Meta:
-        model= User
-        fields= ["username", "email", "password1", "password2"]
-        help_texts= {k : "" for k in fields}
-
-class EditarPerfilForm(UserCreationForm):
-    email= forms.EmailField(label="Email usuario")
-    password1= forms.CharField(label="Contraseña", widget=forms.PasswordInput)
-    password2= forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
-    first_name = forms.CharField(label="Nombre", max_length=150)
-    last_name = forms.CharField(label="Apellido", max_length=150)
-
-    class Meta:
-        model= User
-        fields= ["email", "password1", "password2", "first_name", "last_name"]
-        help_texts= {k : "" for k in fields}
-
-class AvatarForm(forms.Form):
-    imagen = forms.ImageField(label="Imagen de perfil")
+    foto = forms.URLField(label="Foto del director", required=False)

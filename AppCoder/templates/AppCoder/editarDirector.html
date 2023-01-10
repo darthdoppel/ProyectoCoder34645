@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 {% block contenido %}
     <h1 class="font-weight-light">Editando al director {{ director.nombre }} {{ director.apellido }}</h1>
 
@@ -19,7 +21,7 @@
     
     <table>
 
-        {{ form.as_table }}
+        {{ form | crispy }}
         
     </table>
 <br>

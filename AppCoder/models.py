@@ -11,7 +11,8 @@ class pelicula(models.Model):
     descripcion = models.TextField(null = True, blank = True)
     pais = models.CharField(max_length=200)
     director = models.CharField(max_length=200)
-    poster = models.ImageField(upload_to="posters", null=True, blank=True)
+    poster = models.URLField(default=None, null=True, blank=True)
+    puntajepromedio = models.FloatField(default=0)
 
     def __str__(self):
         return f"{self.nombre} ({self.anio}) - Director: {self.director}"
@@ -21,7 +22,7 @@ class director(models.Model):
     apellido = models.CharField(max_length=80)
     edad = models.IntegerField()
     nacionalidad = models.CharField(max_length=80)
-    foto = models.ImageField(upload_to="fotos", null=True, blank=True)
+    foto = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.nombre} {self.apellido} - Edad: {self.edad} - Nacionalidad: {self.nacionalidad}"
@@ -31,14 +32,7 @@ class actor(models.Model):
     apellido = models.CharField(max_length=80)
     edad = models.IntegerField()
     nacionalidad = models.CharField(max_length=80)
-    foto = models.ImageField(upload_to="fotos", null=True, blank=True)
+    foto = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.nombre} {self.apellido} - Edad: {self.edad} - Nacionalidad: {self.nacionalidad}"
-    
-class Avatar(models.Model):
-    imagen = models.ImageField(upload_to="avatars")
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.user.username}"

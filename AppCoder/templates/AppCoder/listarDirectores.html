@@ -1,33 +1,31 @@
 {% extends "AppCoder/padre.html" %}
 
-{% load static %}
-
 {% block contenido %}
-    <h1 class="font-weight-light">Listado de directores:</h1>
 
 
 
-{{ mensaje }}
-
-{% if user.is_authenticated %} <a class="btn btn-primary" href="{% url 'directorForm' %}">Agregar director</a>{% endif %}
-<a class="btn btn-primary" href="{% url 'busquedaDirector' %}">Buscar director</a> 
-
-
-<ul style="list-style: none;">
-
-    {% for director in directores %}
-    <li> 
-        <img src="/media/{{director.foto}}" height="300" width="225"alt=""> 
-        
-        <br>{{ director.nombre }} {{ director.apellido }}</li></br>
-
-    {% if user.is_authenticated %}
-    <a class = "btn btn-primary" href="{% url 'editarDirector' director.id %}">Editar</a>
-    <a class = "btn btn-danger" href="{% url 'borrarDirector' director.id %}">Eliminar</a>
-    {% endif %}
-    {% endfor %}
-
-</ul>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+           <div class="row">
+                {% for director in directores %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center">
+                            <img src="{{ director.foto }}" alt="" class="img-fluid" width="75%">
+                            <h3 class="text-center">{{ director.nombre }} {{ director.apellido }}</h3>
+                            <i class="text-center">{{ director.nacionalidad }} - {{ director.edad }}</i>
+                            </div>
+                    <a href="/AppCoder/detallePeli/{{ pelicula.id }}/">Ver más...</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 

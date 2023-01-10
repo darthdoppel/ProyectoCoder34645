@@ -26,11 +26,5 @@ urlpatterns = [
     path("editarActor/<id>", editarActor, name="editarActor"),
     path("buscarActor/", buscarActor, name="buscarActor"),
     path("actor/borrar/<pk>)", borrarActor.as_view(), name="borrarActor"),
-
-    path("registro/", registro, name="registro"),
-    path("ingreso/", ingreso, name="ingreso"),
-    path("logout/", LogoutView.as_view(), name="logout"),
-    path("EditarPerfil/", EditarPerfil, name="EditarPerfil"),
-    path("agregarAvatar/", agregarAvatar, name="agregarAvatar"),
     path("detallePeli/<int:id>/", detallePeli, name="detallePeli"),
 ]   

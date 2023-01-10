@@ -1,33 +1,30 @@
 {% extends "AppCoder/padre.html" %}
 
-{% load static %}
-
 {% block contenido %}
-    <h1 class="font-weight-light">Listado de actores:</h1>
 
-
-{{ mensaje }}
-
- {% if user.is_authenticated %} <a class="btn btn-primary" href="{% url 'actorForm' %}">Agregar actor</a>{% endif %}
-<a class="btn btn-primary" href="{% url 'busquedaActor' %}">Buscar actor</a> 
-
-
-<ul style="list-style: none;">
-
-    {% for actor in actores %}
-    <li>
-        
-        <img src="/media/{{actor.foto}}" height="300" width="225" alt=""> <br>{{ actor.nombre }} {{ actor.apellido }}</br></li>
-
-    {% if user.is_authenticated %}
-    <a class = "btn btn-primary" href="{% url 'editarActor' actor.id %}">Editar</a>
-    <a class = "btn btn-danger" href="{% url 'borrarActor' actor.id %}">Eliminar</a>
-    {% endif %}
-    {% endfor %}
-
-</ul>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+           <div class="row">
+                {% for actor in actores %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center">
+                            <img src="{{ actor.foto }}" alt="" class="img-fluid" width="75%">
+                            <h3 class="text-center">{{ actor.nombre }} {{ actor.apellido }}</h3>
+                            <i class="text-center">{{ actor.nacionalidad }} - {{ actor.edad }}</i>
+                            </div>
+                    <a href="/AppCoder/detallePeli/{{ actor.id }}/">Ver más...</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
-
 
 

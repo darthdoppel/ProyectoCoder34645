@@ -22,104 +22,86 @@ def actores(request):
 
 def index(request):
     return render (request, "AppCoder/index.html")
-
-@login_required
-def mostrarAvatar(request):
-    lista = Avatar.objects.filter(user=request.user)
-    if len(lista)!=0:
-            avatar = lista[0].imagen.url
-    else:
-            avatar = "media/avatars/default.png"
-    return avatar
-
-@login_required
-def agregarAvatar(request):
-    if request.method == "POST":
-        formu = AvatarForm(request.POST, request.FILES)
-        if formu.is_valid():
-            avatar = Avatar(user=request.user, imagen=request.FILES['imagen'])
-            avatarAnterior = Avatar.objects.filter(user=request.user)
-            if len(avatarAnterior)>0:
-                avatarAnterior.delete()
-            avatar.save()
-            return render (request, "AppCoder/inicio.html", {"mensaje": "Avatar guardado con éxito"})
-        else:
-            return render(request, "AppCoder/agregarAvatar.html", {"form": formu, "usuario": request.user, "mensaje": "Error al guardar el avatar"})
-    else:
-        form = AvatarForm()
-        return render(request, "AppCoder/agregarAvatar.html", {"form": form, "usuario": request.user})
     
 
 #Forms para cargar
 
 @login_required
 def peliFormulario(request):
-    if request.method == "POST":
-        form = PeliForm(request.POST, request.FILES)
-        if form.is_valid():
-            detalles = form.cleaned_data
-            nombre = detalles["nombre"]
-            anio = detalles["anio"]
-            duracion = detalles["duracion"]
-            pais = detalles["pais"]
-            director = detalles["director"]
-            poster = detalles["poster"]
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            if request.method == "POST":
+                form = PeliForm(request.POST, request.FILES)
+                if form.is_valid():
+                    detalles = form.cleaned_data
+                    nombre = detalles["nombre"]
+                    anio = detalles["anio"]
+                    duracion = detalles["duracion"]
+                    descripcion = detalles["descripcion"]
+                    pais = detalles["pais"]
+                    director = detalles["director"]
+                    poster = detalles["poster"]
+                    puntajepromedio = detalles["puntajepromedio"]
 
-            nuevaPeli = pelicula(nombre=nombre, anio=anio, duracion=duracion, pais=pais, director=director, poster=poster)
-            nuevaPeli.save()
-            return render(request, "AppCoder/listarPelis.html", {"mensaje": "Película guardada con éxito"})
+                    nuevaPeli = pelicula(nombre=nombre, anio=anio, duracion=duracion, descripcion=descripcion, pais=pais, director=director, poster=poster, puntajepromedio=puntajepromedio)
+                    nuevaPeli.save()
+                    return render(request, "AppCoder/listarPelis.html", {"mensaje": "Película guardada con éxito"})
 
-        else:
-            return render(request, "AppCoder/peliFormulario.html", {"form": form, "mensaje": "Error al guardar la película"})
-    else:
-        formulario = PeliForm()
-        return render(request, "AppCoder/peliFormulario.html", {"form": formulario})
+                else:
+                    return render(request, "AppCoder/peliFormulario.html", {"form": form, "mensaje": "Error al guardar la película"})
+            else:
+                formulario = PeliForm()
+                return render(request, "AppCoder/peliFormulario.html", {"form": formulario, "controller": "Agregar película"})
 
 @login_required
 def actorForm(request):
-    if request.method == "POST":
-        form = ActorForm(request.POST, request.FILES)
-        if form.is_valid():
-            detalles = form.cleaned_data
-            nombre = detalles["nombre"]
-            apellido = detalles["apellido"]
-            edad = detalles["edad"]
-            nacionalidad = detalles["nacionalidad"]
-            foto = detalles["foto"]
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            if request.method == "POST":
+                form = ActorForm(request.POST, request.FILES)
+                if form.is_valid():
+                    detalles = form.cleaned_data
+                    nombre = detalles["nombre"]
+                    apellido = detalles["apellido"]
+                    edad = detalles["edad"]
+                    nacionalidad = detalles["nacionalidad"]
+                    foto = detalles["foto"]
 
-            nuevoActor = actor(nombre=nombre, apellido=apellido, edad=edad, nacionalidad=nacionalidad, foto = foto)
-            nuevoActor.save()
-            return render(request, "AppCoder/inicio.html", {"mensaje": "Actor guardado con éxito"})
+                    nuevoActor = actor(nombre=nombre, apellido=apellido, edad=edad, nacionalidad=nacionalidad, foto = foto)
+                    nuevoActor.save()
+                    return render(request, "AppCoder/inicio.html", {"mensaje": "Actor guardado con éxito"})
 
-        else:
-            return render(request, "AppCoder/actorForm.html", {"form": formulario, "mensaje": "Error al guardar el actor"})
+                else:
+                    return render(request, "AppCoder/actorForm.html", {"form": formulario, "mensaje": "Error al guardar el actor"})
 
-    else:
-        formulario = ActorForm()
-        return render(request, "AppCoder/actorForm.html", {"form": formulario})
+            else:
+                formulario = ActorForm()
+                return render(request, "AppCoder/actorForm.html", {"form": formulario})
 
 @login_required
 def directorForm(request):
-    if request.method == "POST":
-        form = DirectorForm(request.POST, request.FILES)
-        if form.is_valid():
-            detalles = form.cleaned_data
-            nombre = detalles["nombre"]
-            apellido = detalles["apellido"]
-            edad = detalles["edad"]
-            nacionalidad = detalles["nacionalidad"]
-            foto = detalles["foto"]
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            if request.method == "POST":
+                form = DirectorForm(request.POST, request.FILES)
+                if form.is_valid():
+                    detalles = form.cleaned_data
+                    nombre = detalles["nombre"]
+                    apellido = detalles["apellido"]
+                    edad = detalles["edad"]
+                    nacionalidad = detalles["nacionalidad"]
+                    foto = detalles["foto"]
 
-            nuevoDirector = director(nombre=nombre, apellido=apellido, edad=edad, nacionalidad=nacionalidad, foto = foto)
-            nuevoDirector.save()
-            return render(request, "AppCoder/inicio.html", {"mensaje": "Director guardado con éxito"})
+                    nuevoDirector = director(nombre=nombre, apellido=apellido, edad=edad, nacionalidad=nacionalidad, foto = foto)
+                    nuevoDirector.save()
+                    return render(request, "AppCoder/inicio.html", {"mensaje": "Director guardado con éxito"})
 
-        else:
-            return render(request, "AppCoder/directorForm.html", {"form": formulario, "mensaje": "Error al guardar el director"})
+                else:
+                    return render(request, "AppCoder/directorForm.html", {"form": formulario, "mensaje": "Error al guardar el director"})
 
-    else:
-        formulario = DirectorForm()
-        return render(request, "AppCoder/directorForm.html", {"form": formulario})
+            else:
+                formulario = DirectorForm()
+                return render(request, "AppCoder/directorForm.html", {"form": formulario})
 
 # Funciones y clases de pelis
 
@@ -140,25 +122,28 @@ def listarPelis(request):
 
 @login_required
 def editarPeli(request, id):
-    peli = pelicula.objects.get(id=id)
-    if request.method == "POST":
-        form = PeliForm(request.POST, request.FILES)
-        if form.is_valid():
-            detalles = form.cleaned_data
-            peli.nombre = detalles["nombre"]
-            peli.anio = detalles["anio"]
-            peli.duracion = detalles["duracion"]
-            peli.descripcion = detalles["descripcion"]
-            peli.pais = detalles["pais"]
-            peli.director = detalles["director"]
-            peli.poster = detalles["poster"]
-            peli.save()
-            pelis = pelicula.objects.all()
-            return render(request, "AppCoder/listarPelis.html", {"pelis": pelis, "mensaje": "Película editada con éxito"})
-        pass
-    else:
-        formulario = PeliForm(initial={"nombre": peli.nombre, "anio": peli.anio, "duracion": peli.duracion, "descripcion": peli.descripcion, "pais": peli.pais, "director": peli.director, "poster": peli.poster})
-        return render(request, "AppCoder/editarPeli.html", {"form": formulario, "peli": peli})
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            peli = pelicula.objects.get(id=id)
+            if request.method == "POST":
+                form = PeliForm(request.POST, request.FILES)
+                if form.is_valid():
+                    detalles = form.cleaned_data
+                    peli.nombre = detalles["nombre"]
+                    peli.anio = detalles["anio"]
+                    peli.duracion = detalles["duracion"]
+                    peli.descripcion = detalles["descripcion"]
+                    peli.pais = detalles["pais"]
+                    peli.director = detalles["director"]
+                    peli.poster = detalles["poster"]
+                    peli.puntajepromedio = detalles["puntajepromedio"]
+                    peli.save()
+                    pelis = pelicula.objects.all()
+                    return render(request, "AppCoder/listarPelis.html", {"pelis": pelis, "mensaje": "Película editada con éxito"})
+                pass
+            else:
+                formulario = PeliForm(initial={"nombre": peli.nombre, "anio": peli.anio, "duracion": peli.duracion, "descripcion": peli.descripcion, "pais": peli.pais, "director": peli.director, "poster": peli.poster, "puntajepromedio": peli.puntajepromedio})
+                return render(request, "AppCoder/editarPeli.html", {"form": formulario, "peli": peli, "controller": "editarPeli"})
 
 class borrarPeli(DeleteView, LoginRequiredMixin):
     model = pelicula
@@ -245,67 +230,6 @@ def editarActor(request, id):
 class borrarActor(DeleteView, LoginRequiredMixin):
     model = actor
     success_url = reverse_lazy("listarActores")
-
-# Vista de registro
-
-def registro(request):
-    if request.method == "POST":
-        form = RegistroUsuarioForm(request.POST)
-        if form.is_valid():
-           username = form.cleaned_data["username"]
-           form.save()
-           return render(request, "AppCoder/inicio.html", {"mensaje": f"Registro del usuario {username} exitoso"})
-        else:
-            return render(request, "AppCoder/registroForm.html", {"form": form})
-    else:
-        form = RegistroUsuarioForm()
-        return render(request, "AppCoder/registroForm.html", {"form": form})
-
-# Vista de login
-
-def ingreso(request):
-    if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            datos = form.cleaned_data
-            user=datos["username"]
-            contrasenia=datos["password"]
-            usuario = authenticate(username=user, password=contrasenia)
-            if usuario is not None:
-                login(request, usuario)
-                return render(request, "AppCoder/inicio.html", {"mensaje": f"Ingreso del usuario {user} exitoso"})
-            else:
-                return render(request, "AppCoder/loginForm.html", {"form": form, "mensaje": "Usuario o contraseña incorrectos"})
-        else:
-            return render(request, "AppCoder/loginForm.html", {"form": form, "mensaje": "Usuario o contraseña incorrectos"})
-    else:
-        form = AuthenticationForm()
-        return render(request, "AppCoder/loginForm.html", {"form": form})
-    
-        
-
-
-# Editar perfiles
-
-@login_required
-def EditarPerfil(request):
-    usuario = request.user
-    if request.method == "POST":
-        form = EditarPerfilForm(request.POST)
-        if form.is_valid():
-            datos = form.cleaned_data
-            usuario.email = datos["email"]
-            usuario.password1 = datos["password1"]
-            usuario.password2 = datos["password2"]
-            usuario.first_name = datos["first_name"]
-            usuario.last_name = datos["last_name"]
-            usuario.save()
-            return render(request, "AppCoder/inicio.html", {"mensaje": "Perfil editado con éxito"})
-        else:
-            return render(request, "AppCoder/editarPerfil.html", {"form": form})
-    else:
-        form = EditarPerfilForm(instance=usuario)
-        return render(request, "AppCoder/editarPerfil.html", {"form": form, "nombreusuario": usuario.username})
 
 def detallePeli(request, id):
     peli = pelicula.objects.get(id=id)

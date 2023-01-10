@@ -4,15 +4,36 @@
 
 {% block contenido %}
 
-<br>
-    
-<h1>{{ pelicula.nombre }} ({{ pelicula.anio }}) - Dir: {{ pelicula.director }}</h1>
+<div class="container">
+    <br>
+    <div class="card">
+        <div class="card-body">
+           <div class="row">
+                <div class="col-md-4">
+                    <img src="{{ pelicula.poster }}" alt="{{ pelicula.nombre }}" class="img-fluid">
+                </div>
+                <div class="col-md-8">
+                            <h3 class="text-center">{{ pelicula.nombre }}</h3>
+                            <h5>{{ pelicula.descripcion }}</h5>
+                            <br>
+                            <h5>Dirigida por: {{ pelicula.director }}</h5>
+                            <h5>Puntaje promedio: {{ pelicula.puntajepromedio }}</h5>
 
-<p>{{ pelicula.descripcion }}</p>
-
-<img src="/media/{{pelicula.poster}}" height="300" width="225" alt="">
-
-</br>
+                            {% if request.user.is_authenticated %}
+                                {% if request.user.is_superuser %}
+                            <a href="{% url 'editarPeli' pelicula.id %}" class="btn btn-warning">EDITAR</a>
+                            <a href="{% url 'borrarPeli' pelicula.id %}" class="btn btn-danger">BORRAR!!</a>
+                                {% endif %}
+                            {% endif %} 
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
 
 {% endblock %}
 
