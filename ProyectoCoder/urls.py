@@ -24,6 +24,7 @@ urlpatterns = [
     path('AppCoder/', include('AppCoder.urls')),
     path('', index, name="index"),
     path('Usuarios/', include('Usuarios.urls')),
+    path("Mensajeria/", include("Mensajeria.urls")),
 ]
 
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

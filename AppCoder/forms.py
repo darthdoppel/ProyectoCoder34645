@@ -12,6 +12,7 @@ class PeliForm(forms.Form):
     director = forms.CharField(label="Director de la película", max_length=200)
     poster = forms.URLField(label="Link del póster de la película", required=False)
     puntajepromedio = forms.FloatField(label="Puntaje promedio", initial=0)
+    peliculashechas = forms.ModelMultipleChoiceField(queryset=actor.objects.all(), label="Actores", required=False)
 
     class Meta:
         model= User

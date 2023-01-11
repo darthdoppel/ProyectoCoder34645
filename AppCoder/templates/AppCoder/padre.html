@@ -43,6 +43,7 @@
               <a class="nav-link disabled">Bienvenido: {{ user.username }}</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'verperfil' %}">Mi perfil</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'mensajes' %}">Mensajería</a></li>
               
               {% else %}
 

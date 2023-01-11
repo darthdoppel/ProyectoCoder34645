@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'Usuarios',
     'crispy_forms',
+    'Mensajeria',
 ]
 
 MIDDLEWARE = [
@@ -120,7 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'AppCoder/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'AppCoder/static'), os.path.join(BASE_DIR, 'Usuarios/static'), os.path.join(BASE_DIR, 'Mensajeria/static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

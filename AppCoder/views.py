@@ -15,12 +15,6 @@ from django.contrib import messages
 def peliculas(request):
     return render (request, "AppCoder/listarPelis.html")
 
-def directores(request):
-    return render (request, "AppCoder/directores.html")
-
-def actores(request):
-    return render (request, "AppCoder/actores.html")
-
 def index(request):
     return render (request, "AppCoder/index.html")
     

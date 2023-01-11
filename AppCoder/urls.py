@@ -5,8 +5,6 @@ from django.contrib.auth.views import LogoutView, LoginView
 
 urlpatterns = [
     path("peliculas/", peliculas, name="peliculas"),
-    path("directores/", directores, name="directores"),
-    path("actores/", actores, name="actores"),
     path('', index, name="index"),
     path("peliFormulario/", peliFormulario, name="peliFormulario"),
     path("actorForm/", actorForm, name="actorForm"),
