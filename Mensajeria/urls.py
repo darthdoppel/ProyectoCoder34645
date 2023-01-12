@@ -4,5 +4,8 @@ from django.contrib.auth.views import LogoutView, LoginView
 
 
 urlpatterns = [
-    path("mensajes/", mensajes, name="mensajes"),
+    path("enviarMensajes/", enviarMensajes, name="enviarMensajes"),
+    path("mensajesRecibidos/", mensajesRecibidos, name="mensajesRecibidos"),
+    path("mensajesEnviados/", mensajesEnviados, name="mensajesEnviados"),
+    path("leerMensaje/<int:id>/", leerMensaje, name="leerMensaje"),
 ]   

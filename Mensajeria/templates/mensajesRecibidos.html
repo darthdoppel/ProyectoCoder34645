@@ -1,0 +1,53 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/chat.css' %}">
+
+<br>
+
+<h2 class="text-center">MENSAJES</h2>
+
+<br>
+    <a href="{% url 'enviarMensajes' %}" class="btn btn-warning">ENVIAR UN MENSAJE</a>
+	<a href="{% url 'mensajesEnviados' %}" class="btn btn-warning">VER ENVIADOS</a>
+
+
+<div class="container content">
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+        	<div class="card">
+        		<div class="card-header">MENSAJES RECIBIDOS</div>
+        		<div class="card-body height3">
+        			<ul class="chat-list">{% for mensaje in mensajes %}
+        				<li class="in">
+        					<div class="chat-img">
+        						<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+        					</div>
+							<div class="chat-body">
+								{% if not mensaje.leido %}
+									<div class="chat-leido">{% endif %}
+										<div class="chat-message">
+        							<h5>{{ mensaje.emisor }}</h5>
+        							<p>{{ mensaje.cuerpo }}</p>
+									<i>{{ mensaje.fecha }}</i>
+									<a href="/Mensajeria/leerMensaje/{{ mensaje.id }}/">LEER COMPLETO</a>
+									{% endfor %}									
+								</div>
+        						</div>
+        					</div>
+        				</li>
+        			</ul>
+        		</div>
+        	</div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
