@@ -220,9 +220,11 @@ class borrarActor(DeleteView, LoginRequiredMixin):
 
 def detallePeli(request, id):
     peli = pelicula.objects.get(id=id)
+    reviews = review.objects.filter(pelicula=peli)
     
     context = {
-        "pelicula": peli
+        "pelicula": peli,
+        "reviews": reviews
     }
     return render(request, "AppCoder/detallePeli.html", context)
 
@@ -241,3 +243,39 @@ def detalleDirector(request, id):
         "director": directorcito
     }
     return render(request, "AppCoder/detalleDirector.html", context)
+
+@login_required
+def agregarReview(request, id):
+    peli = pelicula.objects.get(id=id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            datos = form.cleaned_data
+            review.objects.create(
+                pelicula=peli,
+                usuario=request.user,
+                resenia=datos.get('resenia'),
+                puntaje=datos.get('puntaje')
+            )
+            return redirect('detallePeli', id=peli.id)
+    else:
+        form = ReviewForm()
+    return render(request, 'AppCoder/agregarReview.html', {'form': form})
+
+@login_required
+def editarReview(request, id):
+    reviewcita = review.objects.get(id=id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=reviewcita)
+        if form.is_valid():
+            if reviewcita.puntaje > 10 or reviewcita.puntaje < 0:
+                return render(request, 'AppCoder/editarReview.html', {'form': form, 'error': 'El puntaje debe estar entre 0 y 10'})
+            form.save()
+            return redirect('detallePeli', id=reviewcita.pelicula.id)
+    else:
+        form = ReviewForm(instance=reviewcita)
+    return render(request, 'AppCoder/editarReview.html', {'form': form})
+
+class borrarReview(DeleteView, LoginRequiredMixin):
+    model = review
+    success_url = reverse_lazy("listarPelis")

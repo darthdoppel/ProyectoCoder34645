@@ -44,3 +44,8 @@ class DirectorForm(forms.ModelForm):
         model= director
         fields= ["nombre", "apellido", "edad", "nacionalidad", "foto", "peliculashechas"]
         help_texts= {k : "" for k in fields}
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = review
+        fields = ["resenia", "puntaje"]

@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(pelicula)
 admin.site.register(director)
 admin.site.register(actor)
+admin.site.register(review)

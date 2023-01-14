@@ -1,0 +1,20 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block contenido %}
+    <h1 class="font-weight-light">Eliminando la reseña de la película {{ pelicula.nombre }}</h1>
+
+
+<br>
+</br>
+
+
+<form method="post"> 
+    {% csrf_token %}
+    <p>¿Estás seguro de que quieres eliminar la reseña de la película {{ pelicula.nombre }}?</p>
+    <input type="submit" value="Eliminar reseña" class="btn btn-primary">
+
+</form>
+
+{% endblock %}
