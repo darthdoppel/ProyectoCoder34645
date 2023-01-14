@@ -8,9 +8,9 @@
 
 <link rel="stylesheet" href="{% static 'css/chat.css' %}">
 
-<h1>holaaaaaaaa ESTO ES MENSAJERIA</h1>
 
-<h2>ACA SE LEEN LOS MENSAJES ENVIADOS:</h2>
+<br>
+<h2>MENSAJES ENVIADOS:</h2>
 
 <a href="{% url 'mensajesRecibidos' %}" class="btn btn-warning">VOLVER A INBOX</a>
 
@@ -24,13 +24,12 @@
         			<ul class="chat-list">{% for mensaje in mensajes %}
         				<li class="in">
         					<div class="chat-img">
-        						<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
         					</div><div class="chat-body">
         						<div class="chat-message">
         							<h5>{{ mensaje.emisor }}</h5>
         							<p>{{ mensaje.cuerpo }}</p>
 									<i>{{ mensaje.fecha }}</i>
-									<a href="/Mensajeria/leerMensaje/{{ mensaje.id }}/">LEER COMPLETO</a>
+									<a href="/Mensajeria/leerMensaje/{{ mensaje.id }}/" class="btn btn-light" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">LEER</a>
 									{% endfor %}
         						</div>
         					</div>

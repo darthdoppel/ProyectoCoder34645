@@ -91,10 +91,12 @@ def directorForm(request):
             foto = detalles["foto"]
             nuevoDirector = director(nombre=nombre, apellido=apellido, edad=edad, nacionalidad=nacionalidad, foto = foto)
             nuevoDirector.save()
+            
 
             
             pelishechas = pelicula.objects.filter(id__in=request.POST.getlist('peliculashechas'))
             nuevoDirector.pelishechas.add(*pelishechas)
+            nuevoDirector.pelishechas.set(pelishechas)
 
             return render(request, "AppCoder/listarDirectores.html", {"mensaje": "Director guardado con éxito"})
 
@@ -162,17 +164,16 @@ class borrarDirector(DeleteView, LoginRequiredMixin):
     success_url = reverse_lazy("listarDirectores")
 
 def editarDirector(request, id):
-
-    directores = director.objects.get(id=id)
-
+    directorcitos = director.objects.get(id=id)
     datos = {
-        'form': DirectorForm(instance=directores)
+        'form': DirectorForm(instance=directorcitos, initial={'peliculashechas': directorcitos.pelishechas.all()})
     }
-
     if request.method == 'POST':
-        formulario = DirectorForm(data=request.POST, instance=directores)
+        formulario = DirectorForm(data=request.POST, instance=directorcitos)
         if formulario.is_valid():
-            formulario.save()
+            pelishechas = formulario.cleaned_data['peliculashechas']
+            nuevoActor = formulario.save()
+            nuevoActor.pelishechas.set(pelishechas)
             datos['mensaje'] = "Director modificado con éxito"
             datos['form'] = formulario
 
@@ -196,18 +197,21 @@ def listarActores(request):
     return render (request, "AppCoder/listarActores.html", {"actores": actores})
 
 def editarActor(request, id):
-    actores = actor.objects.get(id=id)
+    actorcitos = actor.objects.get(id=id)
     datos = {
-        'form': ActorForm(instance=actores)
+        'form': ActorForm(instance=actorcitos, initial={'peliculashechas': actorcitos.pelishechas.all()})
     }
     if request.method == 'POST':
-        formulario = ActorForm(data=request.POST, instance=actores)
+        formulario = ActorForm(data=request.POST, instance=actorcitos)
         if formulario.is_valid():
-            formulario.save()
+            pelishechas = formulario.cleaned_data['peliculashechas']
+            nuevoActor = formulario.save()
+            nuevoActor.pelishechas.set(pelishechas)
             datos['mensaje'] = "Actor modificado con éxito"
             datos['form'] = formulario
 
     return render(request, "AppCoder/editarActor.html", datos)
+
 
 
 class borrarActor(DeleteView, LoginRequiredMixin):

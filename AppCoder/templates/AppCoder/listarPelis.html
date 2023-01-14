@@ -24,15 +24,18 @@
         <div class="card-body">
            <div class="row">
                 {% for pelicula in pelis %}
-                <div class="col-md-4">
+                <div class="col-lg-4 mb-3 d-flex align-items-stretch">
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center">
                             <img src="{{ pelicula.poster }}" alt="" class="img-fluid" width="75%">
+                            <br>
+                            <br>
                             <h3 class="text-center">{{ pelicula.nombre }}</h3>
-                            <i class="text-center">{{ pelicula.anio }} - Dir: {% for director in pelicula.director.all %} <a href="/AppCoder/detalleDirector/{{ director.id }}/">{{ director.nombre }} {{ director.apellido }} {% endfor %}</i>
+                            <i class="text-center text-primary text-opacity-50">{{ pelicula.anio }} - Dir: {% for director in pelicula.director.all %} <a href="/AppCoder/detalleDirector/{{ director.id }}/">{{ director.nombre }} {{ director.apellido }} {% endfor %}</i>
                             </div>
-                    <a href="/AppCoder/detallePeli/{{ pelicula.id }}/" class="btn btn-outline-info btn-sm">Ver detalles</a>
+                            <br>
+                    <a href="/AppCoder/detallePeli/{{ pelicula.id }}/" class="btn btn-outline-info btn-sm mt-auto align-self-start">Ver detalles</a>
                         </div>
                     </div>
                 </div>

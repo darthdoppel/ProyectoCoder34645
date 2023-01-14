@@ -26,7 +26,6 @@
         			<ul class="chat-list">{% for mensaje in mensajes %}
         				<li class="in">
         					<div class="chat-img">
-        						<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
         					</div>
 							<div class="chat-body">
 								{% if not mensaje.leido %}
@@ -35,7 +34,7 @@
         							<h5>{{ mensaje.emisor }}</h5>
         							<p>{{ mensaje.cuerpo }}</p>
 									<i>{{ mensaje.fecha }}</i>
-									<a href="/Mensajeria/leerMensaje/{{ mensaje.id }}/">LEER COMPLETO</a>
+									<a href="/Mensajeria/leerMensaje/{{ mensaje.id }}/" class="btn btn-light" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">LEER</a>
 									{% endfor %}									
 								</div>
         						</div>
