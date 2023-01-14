@@ -10,12 +10,13 @@ class pelicula(models.Model):
     duracion = models.IntegerField()
     descripcion = models.TextField(null = True, blank = True)
     pais = models.CharField(max_length=200)
-    director = models.CharField(max_length=200)
+    director = models.ManyToManyField('director', related_name="pelishechasdirector", blank=True)
     poster = models.URLField(default=None, null=True, blank=True)
     puntajepromedio = models.FloatField(default=0)
+    cast = models.ManyToManyField('actor', related_name="pelishechasactores", blank=True)
 
     def __str__(self):
-        return f"{self.nombre} ({self.anio}) - Director: {self.director}"
+        return f"{self.nombre} ({self.anio})"
 
 class director(models.Model):
     nombre = models.CharField(max_length=80)
@@ -23,9 +24,10 @@ class director(models.Model):
     edad = models.IntegerField()
     nacionalidad = models.CharField(max_length=80)
     foto = models.URLField(null=True, blank=True)
+    pelishechas = models.ManyToManyField(pelicula, related_name="pelishechasdirector", blank=True)
 
     def __str__(self):
-        return f"{self.nombre} {self.apellido} - Edad: {self.edad} - Nacionalidad: {self.nacionalidad}"
+        return f"{self.nombre} {self.apellido}"
 
 class actor(models.Model):
     nombre = models.CharField(max_length=80)
@@ -33,6 +35,7 @@ class actor(models.Model):
     edad = models.IntegerField()
     nacionalidad = models.CharField(max_length=80)
     foto = models.URLField(null=True, blank=True)
+    pelishechas = models.ManyToManyField(pelicula, related_name="pelishechasactores", blank=True)
 
     def __str__(self):
-        return f"{self.nombre} {self.apellido} - Edad: {self.edad} - Nacionalidad: {self.nacionalidad}"
+        return f"{self.nombre} {self.apellido}"

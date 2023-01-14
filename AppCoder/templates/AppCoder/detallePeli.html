@@ -16,9 +16,13 @@
                             <h3 class="text-center">{{ pelicula.nombre }}</h3>
                             <h5>{{ pelicula.descripcion }}</h5>
                             <br>
-                            <h5>Dirigida por: {{ pelicula.director }}</h5>
+                            <h5>Dirigida por: {% for director in pelicula.director.all %} <a href="/AppCoder/detalleDirector/{{ director.id }}/">{{ director.nombre }} {{ director.apellido }} {% endfor %}</a></h5>
                             <h5>Puntaje promedio: {{ pelicula.puntajepromedio }}</h5>
-                            <h5>Cast: </h5>
+                            <h5>Cast:                             
+                                <ul>{% for actor in pelicula.cast.all %}
+                                <li><a href="/AppCoder/detalleActor/{{ actor.id }}/">{{ actor.nombre }} {{ actor.apellido }}</a></li>
+                            {% endfor %}
+                                </ul></h5>
 
                             {% if user.is_authenticated %}
                             

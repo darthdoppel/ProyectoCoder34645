@@ -19,6 +19,13 @@
                             <h5>Edad: {{ actor.edad }}</h5>
                             <h5>País de nacimiento: {{ actor.nacionalidad }}</h5>
 
+                            <h5>Actúa en:
+                            <ul>{% for pelicula in actor.pelishechas.all %}
+                                    <li><a href="/AppCoder/detallePeli/{{ pelicula.id }}/">{{ pelicula.nombre }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            </h5>
+
                             {% if user.is_authenticated %}
 
                             <a href="{% url 'editarActor' actor.id %}" class="btn btn-warning">EDITAR</a>

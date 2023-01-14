@@ -2,15 +2,22 @@
 
 {% block contenido %}
 
+{% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/movies.css' %}">
+
 
 {% if user.is_authenticated %}
-    <a href="{% url 'peliFormulario' %}" class="btn btn-warning">AGREGAR PELI</a>
+<br>
+    <a href="{% url 'peliFormulario' %}" class="btn btn-success">Agregar película</a>
 
 {% endif %}
 
 <div class="text-center"><h2>{{ mensaje }}</h2></div>
 
 <br>
+
+
 
 <div class="container">
     <div class="card">
@@ -23,9 +30,9 @@
                             <div class="text-center">
                             <img src="{{ pelicula.poster }}" alt="" class="img-fluid" width="75%">
                             <h3 class="text-center">{{ pelicula.nombre }}</h3>
-                            <i class="text-center">{{ pelicula.anio }} - Dir: {{ pelicula.director }}</i>
+                            <i class="text-center">{{ pelicula.anio }} - Dir: {% for director in pelicula.director.all %} <a href="/AppCoder/detalleDirector/{{ director.id }}/">{{ director.nombre }} {{ director.apellido }} {% endfor %}</i>
                             </div>
-                    <a href="/AppCoder/detallePeli/{{ pelicula.id }}/">Ver más...</a>
+                    <a href="/AppCoder/detallePeli/{{ pelicula.id }}/" class="btn btn-outline-info btn-sm">Ver detalles</a>
                         </div>
                     </div>
                 </div>
@@ -34,6 +41,7 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}
 

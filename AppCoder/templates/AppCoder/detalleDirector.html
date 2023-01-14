@@ -19,6 +19,13 @@
                             <h5>Edad: {{ director.edad }}</h5>
                             <h5>País de nacimiento: {{ director.nacionalidad }}</h5>
 
+                            <h5>Dirige las siguientes películas:
+                                <ul>{% for pelicula in director.pelishechas.all %}
+                                        <li><a href="/AppCoder/detallePeli/{{ pelicula.id }}/">{{ pelicula.nombre }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                                </h5>
+
                             {% if user.is_authenticated %}
 
                             <a href="{% url 'editarDirector' director.id %}" class="btn btn-warning">EDITAR</a>
