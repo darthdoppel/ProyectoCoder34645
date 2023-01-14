@@ -12,7 +12,7 @@
         <div class="card-body">
            <div class="row">
                 {% for director in directores %}
-                <div class="col-md-4">
+                <div class="col-lg-4 mb-3 d-flex align-items-stretch">
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center">
@@ -20,7 +20,7 @@
                             <h3 class="text-center">{{ director.nombre }} {{ director.apellido }}</h3>
                             <i class="text-center">{{ director.nacionalidad }} - {{ director.edad }}</i>
                             </div>
-                    <a href="/AppCoder/detalleDirector/{{ director.id }}/">Ver más...</a>
+                    <a href="/AppCoder/detalleDirector/{{ director.id }}/" class="btn btn-outline-info btn-sm mt-auto align-self-start">Ver detalles</a>
                         </div>
                     </div>
                 </div>
