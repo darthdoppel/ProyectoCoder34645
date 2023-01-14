@@ -7,6 +7,7 @@ from django.views.generic import DeleteView, ListView, DetailView, UpdateView, C
 from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate
 from django.utils.timezone import datetime
+from django.db.models import Avg
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -221,10 +222,16 @@ class borrarActor(DeleteView, LoginRequiredMixin):
 def detallePeli(request, id):
     peli = pelicula.objects.get(id=id)
     reviews = review.objects.filter(pelicula=peli)
+
+    promedio = reviews.aggregate(Avg("puntaje"))["puntaje__avg"]
+    if promedio is None:
+        promedio = 0
+    promedio = round(promedio, 2)
     
     context = {
         "pelicula": peli,
-        "reviews": reviews
+        "reviews": reviews,
+        "promedio": promedio
     }
     return render(request, "AppCoder/detallePeli.html", context)
 
