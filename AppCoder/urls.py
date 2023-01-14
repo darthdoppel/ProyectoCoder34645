@@ -4,7 +4,6 @@ from django.contrib.auth.views import LogoutView, LoginView
 
 
 urlpatterns = [
-    path("peliculas/", peliculas, name="peliculas"),
     path('', index, name="index"),
     path("peliFormulario/", peliFormulario, name="peliFormulario"),
     path("actorForm/", actorForm, name="actorForm"),
@@ -17,7 +16,7 @@ urlpatterns = [
     path("listarDirectores/", listarDirectores, name="listarDirectores"),
     path("editarDirector/<id>", editarDirector, name="editarDirector"),
     path('director/borrar/<pk>', borrarDirector.as_view(), name='borrarDirector'),
-    path("busquedaDirector", busquedaDirector, name="busquedaDirector"),
+    path("busquedaDirector/", busquedaDirector, name="busquedaDirector"),
     path('buscarDirector/', buscarDirector, name='buscarDirector'),
     path("busquedaActor", busquedaActor, name="busquedaActor"),
     path("listarActores/", listarActores, name="listarActores"),

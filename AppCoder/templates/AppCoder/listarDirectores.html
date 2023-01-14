@@ -2,10 +2,15 @@
 
 {% block contenido %}
 
-<br>
-<a href="{% url 'directorForm' %}" class="btn btn-success">Agregar director</a>
+
+<br>{% if user.is_authenticated %}
+<a href="{% url 'directorForm' %}" class="btn btn-primary">Agregar director</a>
+{% endif %}
+<a href="{% url 'busquedaDirector' %}" class="btn btn-success">Buscar director</a>
 
 <div class="text-center"><h2>{{ mensaje }}</h2></div>
+
+
 
 <div class="container">
     <div class="card">

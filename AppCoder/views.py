@@ -13,14 +13,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
-def peliculas(request):
-    return render (request, "AppCoder/listarPelis.html")
-
 def index(request):
-    return render (request, "AppCoder/index.html")
-    
-
-#Forms para cargar
+    return render(request, "AppCoder/index.html")
 
 @login_required
 def peliFormulario(request):
@@ -53,7 +47,7 @@ def peliFormulario(request):
         formulario = PeliForm()
         return render(request, "AppCoder/peliFormulario.html", {"form": formulario})
 
-
+@login_required
 def actorForm(request):
     if request.method == "POST":
         form = ActorForm(request.POST, request.FILES)
@@ -108,23 +102,54 @@ def directorForm(request):
         formulario = DirectorForm()
         return render(request, "AppCoder/directorForm.html", {"form": formulario})
 
-# Funciones y clases de pelis
-
 def busquedaPeli(request):
     return render (request, "AppCoder/busquedaPeli.html")
 
 def buscarPeli(request):
     nombre = request.GET["nombre"]
-    if nombre != "":
-        pelis = pelicula.objects.filter(nombre__icontains=nombre)
-        return render (request, "AppCoder/resBusqPelis.html", {"pelis": pelis})
+    pelis = pelicula.objects.filter(nombre__contains=nombre)
+    if nombre == "":
+        return render (request, "AppCoder/busquedaPeli.html", {"mensaje": "Ingrese por favor una película"})
+    if pelis:
+        return render (request, "AppCoder/listarPelis.html", {"pelis": pelis})
     else:
-        return render (request, "AppCoder/busquedaPeli.html", {"mensaje": "No se encontró la película"})
+        return render (request, "AppCoder/busquedaPeli.html", {"mensaje": "No se encontró ninguna película con ese nombre"})
+
+
+def busquedaDirector(request):
+    return render (request, "AppCoder/busquedaDirector.html")
+
+
+def buscarDirector(request):
+    nombre = request.GET["nombre"]
+    directores = director.objects.filter(nombre__contains=nombre)
+    if nombre == "": 
+        return render (request, "AppCoder/busquedaDirector.html", {"mensaje": "Ingrese por favor un nombre"})
+    if directores:
+        return render (request, "AppCoder/listarDirectores.html", {"directores": directores})
+    else:
+        return render (request, "AppCoder/busquedaDirector.html", {"mensaje": "No se encontró ningún director con ese nombre"})
+    
+
+def busquedaActor(request):
+    return render (request, "AppCoder/busquedaActor.html")
+
+def buscarActor(request):
+    nombre = request.GET["nombre"]
+    actores = actor.objects.filter(nombre__contains=nombre)
+    if nombre == "":
+        return render (request, "AppCoder/busquedaActor.html", {"mensaje": "Ingrese por favor un nombre"})
+    if actores:
+        return render (request, "AppCoder/listarActores.html", {"actores": actores})
+    else:
+        return render (request, "AppCoder/busquedaActor.html", {"mensaje": "No se encontró ningún actor con ese nombre"})
+
 
 def listarPelis(request):
     pelis = pelicula.objects.all()
     return render (request, "AppCoder/listarPelis.html", {"pelis": pelis})
 
+@login_required
 def editarPeli(request, id):
     peli = pelicula.objects.get(id=id)
     datos = {
@@ -143,18 +168,6 @@ class borrarPeli(DeleteView, LoginRequiredMixin):
     model = pelicula
     success_url = reverse_lazy("listarPelis")
 
-# Funciones y clases de directores
-
-def busquedaDirector(request):
-    return render (request, "AppCoder/busquedaDirector.html")
-
-def buscarDirector(request):
-    nombre = request.GET["nombre"]
-    if nombre !="":
-        directores = director.objects.filter(nombre__icontains=nombre)
-        return render (request, "AppCoder/resBusqDirectores.html", {"directores": directores})
-    else:
-        return render (request, "AppCoder/busquedaDirector.html", {"mensaje": "No se encontró al director"})
 
 def listarDirectores(request):
     directores = director.objects.all()
@@ -164,6 +177,7 @@ class borrarDirector(DeleteView, LoginRequiredMixin):
     model = director
     success_url = reverse_lazy("listarDirectores")
 
+@login_required
 def editarDirector(request, id):
     directorcitos = director.objects.get(id=id)
     datos = {
@@ -180,23 +194,12 @@ def editarDirector(request, id):
 
     return render(request, "AppCoder/editarDirector.html", datos)
 
-# Funciones y clases de actores
-
-def busquedaActor(request):
-    return render (request, "AppCoder/busquedaActor.html")
-
-def buscarActor(request):
-    nombre = request.GET["nombre"]
-    if nombre !="":
-        actores = actor.objects.filter(nombre__icontains=nombre)
-        return render (request, "AppCoder/resBusqActores.html", {"actores": actores})
-    else:
-        return render (request, "AppCoder/busquedaActor.html", {"mensaje": "No se encontró al actor"})
 
 def listarActores(request):
     actores = actor.objects.all()
     return render (request, "AppCoder/listarActores.html", {"actores": actores})
 
+@login_required
 def editarActor(request, id):
     actorcitos = actor.objects.get(id=id)
     datos = {

@@ -9,9 +9,11 @@
 
 {% if user.is_authenticated %}
 <br>
-<a href="{% url 'peliFormulario' %}" class="btn btn-success">Agregar película</a>
+<a href="{% url 'peliFormulario' %}" class="btn btn-primary">Agregar película</a>
 
 {% endif %}
+
+<a href="{% url 'busquedaPeli' %}" class="btn btn-success">Buscar película</a>
 
 <div class="text-center"><h2>{{ mensaje }}</h2></div>
 
