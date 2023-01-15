@@ -32,12 +32,6 @@ def peliFormulario(request):
             nuevaPeli = pelicula(nombre=nombre, anio=anio, duracion=duracion, descripcion=descripcion, pais=pais, poster=poster, puntajepromedio=puntajepromedio)
             nuevaPeli.save()
 
-            actores = actor.objects.filter(id__in=request.POST.getlist('actores'))
-            nuevaPeli.actores.add(*actores)
-
-            directores = director.objects.filter(id__in=request.POST.getlist('directores'))
-            nuevaPeli.directores.add(*directores)
-
             return render(request, "AppCoder/listarPelis.html", {"mensaje": "Película guardada con éxito"})
 
         else:

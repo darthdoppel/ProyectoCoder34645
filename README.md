@@ -24,4 +24,4 @@ Mensajería entre usuarios, con el resaltado para mensajes sin leer
 
 Perfil que permite editar la información y el avatar
 
-Acerca de con un poco de información sobre mi y este proyecto que tiene mes y medio de trabajo por mi cuenta, y gracias al curso de Coderhouse
+Acerca de con un poco de información sobre mi y este proyecto, que tiene mes y medio de trabajo por mi cuenta, y gracias al curso de Coderhouse
