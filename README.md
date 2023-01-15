@@ -3,10 +3,25 @@ Leandro Magallanes
 
 Idea: un clon o similar a Letterboxd: https://letterboxd.com/
 
-Funcionalidades por el momento: 
+Requisitos para que funcione:
 
-Navbar: Inicio, Búsqueda película, Películas, Directores y Actores, accesos funcionales
+- Tener instalado Python y Django
 
-- Búsqueda película: busca por nombre de película, incluso con letras que contengan en el nombre
+- Luego instalar:
+pip install django-cleanup
+pip install django-crispy-forms
+pip install Pillow
 
-- Películas, Directores y Actores: permite agregar a la base de datos lo propiamente dicho, pensado para usuarios superadmin para crear entradas principales, y que luego un usuario pueda crear su entrada con la reseña y puntaje de la película
+Funcionalidades:
+
+Navbar totalmente funcional y cambia si uno está logeado o no
+
+Listado de películas, directores y actores, con relación directa entre ellos
+
+Carga de nuevos objetos con usuario registrado, carga de reseñas en una pelicula con usuario registrado (solo se puede editar y borrar las reseñas propias)
+
+Mensajería entre usuarios, con el resaltado para mensajes sin leer
+
+Perfil que permite editar la información y el avatar
+
+Acerca de con un poco de información sobre mi y este proyecto que tiene mes y medio de trabajo por mi cuenta, y gracias al curso de Coderhouse
