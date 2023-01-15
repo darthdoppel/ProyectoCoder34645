@@ -29,4 +29,5 @@ urlpatterns = [
     path("agregarReview/<id>/", agregarReview, name="agregarReview"),
     path("editarReview/<id>/", editarReview, name="editarReview"),
     path("borrarReview/<pk>/", borrarReview.as_view(), name="borrarReview"),
+    path("sobremi/", sobremi, name="sobremi"),
 ]   

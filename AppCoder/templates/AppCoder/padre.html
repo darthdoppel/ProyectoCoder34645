@@ -34,9 +34,9 @@
             <li class="nav-item">
               {% if user.is_authenticated %}
               <a class="nav-link disabled">Bienvenido: {{ user.username }}</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'verperfil' %}">Mi perfil</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'mensajesRecibidos' %}">Mensajería</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">CERRAR SESIÓN</a></li>
               
               {% else %}
 
@@ -45,16 +45,18 @@
               <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}">Registrarse</a> </li>
               
               {% endif %}
+
+              <li class="nav-item"><a class="nav-link" href="{% url 'sobremi' %}">Acerca de</a></li>
           </ul>
-          <form class="d-flex" role="search" method="GET">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="title">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
         </div>
       </div>
     </nav>
    
+
+    
     {% block contenido %}
+
+    
 
     {% endblock %}
     

@@ -289,3 +289,6 @@ def editarReview(request, id):
 class borrarReview(DeleteView, LoginRequiredMixin):
     model = review
     success_url = reverse_lazy("listarPelis")
+
+def sobremi(request):
+    return render(request, "AppCoder/sobremi.html", {'imagen': "sobremi.jpg"})

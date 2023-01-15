@@ -1,0 +1,28 @@
+{% extends "AppCoder/padre.html" %}
+
+{% block contenido %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/sobremi.css' %}">
+<section class="section about-section gray-bg" id="about">
+    <div class="container">
+        <div class="row align-items-center justify-content-around flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text">
+                    <h3 class="dark-color">Sobre mi:</h3>
+                    <p>Mi nombre es Leandro Magallanes, tengo 27 años y soy estudiante de Backend, Data Science y programación en Phyton. Soy un gran entusiasta del cine por lo cual decidí hacer un proyecto acorde a ello, disfruto plasmando mis pasiones en los proyectos que llevo a cabo.</p>
+                        
+                    <p> Disfruto desarrollar páginas web y ver plasmadas mi ideas en proyectos funcionales e innovadores. Mi perfeccionismo y constancia siempre me llevan a intentar mejorar mis proyectos para alcanzar nuevos estándares.</p>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center">
+                <div class="about-img">
+                    <img src="{% get_media_prefix %}avatars/sobremi.jpg" width="50%">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

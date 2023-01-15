@@ -78,10 +78,10 @@ def EditarPerfil(request):
 def mostrarAvatar(request):
     lista = Avatar.objects.filter(user=request.user)
     if len(lista)!=0:
-            avatar = lista[0].imagen.url
+        return lista[0].imagen.url
     else:
-            avatar = "media/avatars/default.png"
-    return avatar
+        return "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+
 
 @login_required
 def agregarAvatar(request):

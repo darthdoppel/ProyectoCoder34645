@@ -10,7 +10,7 @@
 
 <br>
 
-<h2 class="text-center">MENSAJES</h2>
+<h2 class="text-center">MENSAJES <i class="fa-solid fa-inbox"></i></h2>
 
 <br>
     <a href="{% url 'enviarMensajes' %}" class="btn btn-warning">ENVIAR UN MENSAJE</a>
@@ -34,7 +34,7 @@
         							<h5>{{ mensaje.emisor }}</h5>
         							<p>{{ mensaje.cuerpo }}</p>
 									<i>{{ mensaje.fecha }}</i>
-									<a href="/Mensajeria/leerMensaje/{{ mensaje.id }}/" class="btn btn-light" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">LEER</a>
+									<a href="/Mensajeria/leerMensaje/{{ mensaje.id }}/"><i class="fa-solid fa-eye"></i></a>
 									{% endfor %}									
 								</div>
         						</div>
