@@ -3,6 +3,8 @@ Leandro Magallanes
 
 Idea: un clon o similar a Letterboxd: https://letterboxd.com/
 
+Video funcionamiento: https://drive.google.com/file/d/14GDlLBLBVtrGwrv9GdswlWihfJA6fYXT/view?usp=sharing
+
 Requisitos para que funcione:
 
 - Tener instalado Python y Django
@@ -14,14 +16,14 @@ pip install Pillow
 
 Funcionalidades:
 
-Navbar totalmente funcional y cambia si uno está logeado o no
+- Navbar totalmente funcional y cambia si uno está logeado o no
 
-Listado de películas, directores y actores, con relación directa entre ellos
+- Listado de películas, directores y actores, con relación directa entre ellos
 
-Carga de nuevos objetos con usuario registrado, carga de reseñas en una pelicula con usuario registrado (solo se puede editar y borrar las reseñas propias)
+- Carga de nuevos objetos con usuario registrado, carga de reseñas en una pelicula con usuario registrado (solo se puede editar y borrar las reseñas propias)
 
-Mensajería entre usuarios, con el resaltado para mensajes sin leer
+- Mensajería entre usuarios, con el resaltado para mensajes sin leer
 
-Perfil que permite editar la información y el avatar
+- Perfil que permite editar la información y el avatar
 
-Acerca de con un poco de información sobre mi y este proyecto, que tiene mes y medio de trabajo por mi cuenta, y gracias al curso de Coderhouse
+- Acerca de con un poco de información sobre mi y este proyecto, que tiene mes y medio de trabajo por mi cuenta, y gracias al curso de Coderhouse
