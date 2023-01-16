@@ -10,8 +10,8 @@ Requisitos para que funcione:
 - Tener instalado Python y Django
 
 - Luego instalar:
-pip install django-cleanup
-pip install django-crispy-forms
+pip install django-cleanup,
+pip install django-crispy-forms,
 pip install Pillow
 
 Funcionalidades:
